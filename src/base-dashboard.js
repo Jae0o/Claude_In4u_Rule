@@ -24,27 +24,42 @@ class DashboardController {
   async loadInitialData() {
     try {
       this.showLoading(true);
-      const response = await fetch(`/dashboard/${this.dashboardId}/data`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({}),
-      });
 
-      if (!response.ok) {
-        throw new Error("데이터 로딩 실패");
-      }
-
-      const data = await response.json();
-      this.rawData = data.data;
-      this.updateStats(data.filtered_count, data.total_count);
+      // Mock 데이터 생성
+      const mockData = this.generateMockData();
+      this.rawData = mockData;
+      this.updateStats(mockData.length, mockData.length);
     } catch (error) {
       console.error("데이터 로딩 오류:", error);
       this.showError("데이터를 불러올 수 없습니다.");
     } finally {
       this.showLoading(false);
     }
+  }
+
+  generateMockData() {
+    // 기본 Mock 데이터 생성 (단일 차트용)
+    const months = ['2023.01', '2023.02', '2023.03', '2023.04', '2023.05', '2023.06', '2023.07', '2023.08', '2023.09'];
+    const channels = ['온라인', '오프라인'];
+    const products = ['전자', '의류', '식품', '스포츠', '생활용품', '자동차용품', '건강기능식품', '화장품', '도서', '기타'];
+
+    const mockData = [];
+
+    months.forEach(month => {
+      channels.forEach(channel => {
+        products.forEach(product => {
+          mockData.push({
+            달력_연도_월: month,
+            유통경로: channel,
+            제품군: product,
+            총매출액: Math.floor(Math.random() * 5000) + 1000, // 1000-6000 사이 랜덤값
+            count: Math.floor(Math.random() * 100) + 10 // 10-110 사이 랜덤값
+          });
+        });
+      });
+    });
+
+    return mockData;
   }
 
   setupFilterEventListeners() {
@@ -61,21 +76,25 @@ class DashboardController {
 
     try {
       this.showLoading(true);
-      const response = await fetch(`/dashboard/${this.dashboardId}/data`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(filters),
+
+      // Mock 데이터에 필터 적용
+      const allData = this.generateMockData();
+      let filteredData = allData;
+
+      // 필터 적용 로직 (예시)
+      Object.keys(filters).forEach(column => {
+        const filterValue = filters[column];
+        if (filterValue && filterValue !== '') {
+          if (Array.isArray(filterValue)) {
+            filteredData = filteredData.filter(row => filterValue.includes(row[column]));
+          } else {
+            filteredData = filteredData.filter(row => row[column] === filterValue);
+          }
+        }
       });
 
-      if (!response.ok) {
-        throw new Error("필터링 실패");
-      }
-
-      const data = await response.json();
-      this.rawData = data.data;
-      this.updateStats(data.filtered_count, data.total_count);
+      this.rawData = filteredData;
+      this.updateStats(filteredData.length, allData.length);
       this.renderChart();
     } catch (error) {
       console.error("필터링 오류:", error);
@@ -554,29 +573,21 @@ class MultiChartDashboardController extends DashboardController {
   async loadInitialData() {
     try {
       this.showLoading(true);
-      const response = await fetch(`/dashboard/${this.dashboardId}/data`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({}),
-      });
 
-      if (!response.ok) {
-        throw new Error("데이터 로딩 실패");
-      }
+      // Multi-chart를 위한 Mock 데이터 생성
+      const mockData = this.generateMultiChartMockData();
 
-      const data = await response.json();
-
-      if (data.is_multi_chart) {
+      if (this.isMultiChart) {
         // 다중 차트 데이터 처리
-        data.datasets.forEach((dataset) => {
+        mockData.datasets.forEach((dataset) => {
           this.chartData[dataset.chart_index] = dataset.data;
         });
-        this.updateStats(data.filtered_count, data.total_count);
+        this.updateStats(mockData.filtered_count, mockData.total_count);
         this.renderAllCharts();
       } else {
         // 단일 차트 처리 (기존 로직)
-        this.rawData = data.data;
-        this.updateStats(data.filtered_count, data.total_count);
+        this.rawData = mockData.data;
+        this.updateStats(mockData.filtered_count, mockData.total_count);
         this.renderChart();
       }
     } catch (error) {
@@ -587,8 +598,63 @@ class MultiChartDashboardController extends DashboardController {
     }
   }
 
+  generateMultiChartMockData() {
+    const months = ['2023.01', '2023.02', '2023.03', '2023.04', '2023.05', '2023.06', '2023.07', '2023.08', '2023.09'];
+    const channels = ['온라인', '오프라인'];
+    const products = ['전자', '의류', '식품', '스포츠', '생활용품', '자동차용품', '건강기능식품', '화장품', '도서', '기타'];
+
+    // 차트 1 데이터: 달력_연도_월별 총매출액 (단일 시리즈)
+    const chart1Data = months.map(month => ({
+      달력_연도_월: month,
+      총매출액: Math.floor(Math.random() * 3000) + 4000 // 4000-7000 사이
+    }));
+
+    // 차트 2 데이터: 달력_연도_월별 유통경로별 총매출액 (다중 시리즈)
+    const chart2Data = [];
+    months.forEach(month => {
+      channels.forEach(channel => {
+        chart2Data.push({
+          달력_연도_월: month,
+          유통경로: channel,
+          총매출액: Math.floor(Math.random() * 4000) + 2000 // 2000-6000 사이
+        });
+      });
+    });
+
+    // 차트 3 데이터: 달력_연도_월별 제품군별 총매출액 (다중 시리즈)
+    const chart3Data = [];
+    months.forEach(month => {
+      products.forEach(product => {
+        chart3Data.push({
+          달력_연도_월: month,
+          제품군: product,
+          총매출액: Math.floor(Math.random() * 2500) + 500 // 500-3000 사이
+        });
+      });
+    });
+
+    const totalCount = chart1Data.length + chart2Data.length + chart3Data.length;
+
+    return {
+      is_multi_chart: true,
+      filtered_count: totalCount,
+      total_count: totalCount,
+      datasets: [
+        { chart_index: 0, data: chart1Data },
+        { chart_index: 1, data: chart2Data },
+        { chart_index: 2, data: chart3Data }
+      ]
+    };
+  }
+
   renderAllCharts() {
     this.chartConfigs.forEach((config, index) => {
+      // 차트 헤더 업데이트
+      const chartHeader = document.querySelector(`.chart-item[data-chart-index="${index}"] .chart-header h6`);
+      if (chartHeader) {
+        chartHeader.textContent = config.title || `Chart ${index + 1}`;
+      }
+
       this.renderSingleChart(index, config, this.chartData[index] || []);
     });
   }
@@ -845,27 +911,56 @@ class MultiChartDashboardController extends DashboardController {
 
     try {
       this.showLoading(true);
-      const response = await fetch(`/dashboard/${this.dashboardId}/data`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(filters),
-      });
 
-      if (!response.ok) {
-        throw new Error("필터링 실패");
-      }
+      // Mock 데이터에 필터 적용
+      const mockData = this.generateMultiChartMockData();
 
-      const data = await response.json();
+      if (this.isMultiChart) {
+        // 필터 적용된 데이터셋 생성
+        const filteredDatasets = mockData.datasets.map(dataset => {
+          let filteredData = dataset.data;
 
-      if (data.is_multi_chart) {
-        data.datasets.forEach((dataset) => {
+          Object.keys(filters).forEach(column => {
+            const filterValue = filters[column];
+            if (filterValue && filterValue !== '') {
+              if (Array.isArray(filterValue)) {
+                filteredData = filteredData.filter(row => filterValue.includes(row[column]));
+              } else {
+                filteredData = filteredData.filter(row => row[column] === filterValue);
+              }
+            }
+          });
+
+          return {
+            ...dataset,
+            data: filteredData
+          };
+        });
+
+        filteredDatasets.forEach((dataset) => {
           this.chartData[dataset.chart_index] = dataset.data;
         });
-        this.updateStats(data.filtered_count, data.total_count);
+
+        const totalFiltered = filteredDatasets.reduce((sum, dataset) => sum + dataset.data.length, 0);
+        this.updateStats(totalFiltered, mockData.total_count);
         this.renderAllCharts();
       } else {
-        this.rawData = data.data;
-        this.updateStats(data.filtered_count, data.total_count);
+        // 단일 차트 처리
+        let filteredData = mockData.data;
+
+        Object.keys(filters).forEach(column => {
+          const filterValue = filters[column];
+          if (filterValue && filterValue !== '') {
+            if (Array.isArray(filterValue)) {
+              filteredData = filteredData.filter(row => filterValue.includes(row[column]));
+            } else {
+              filteredData = filteredData.filter(row => row[column] === filterValue);
+            }
+          }
+        });
+
+        this.rawData = filteredData;
+        this.updateStats(filteredData.length, mockData.total_count);
         this.renderChart();
       }
     } catch (error) {
@@ -939,8 +1034,8 @@ function resetFilters() {
 // 페이지 로드 시 대시보드 초기화
 document.addEventListener("DOMContentLoaded", function () {
   try {
-    const dashboardId = "";
-    const chartConfig = {};
+    // Mock 환경에서는 대시보드 ID가 필요 없음
+    const dashboardId = "mock-dashboard";
 
     // Check if Plotly is available
     if (typeof Plotly === "undefined") {
@@ -954,24 +1049,46 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    if (!dashboardId) {
-      console.error("Dashboard ID is missing");
-      document.getElementById("chart").innerHTML = `
-                <div class="alert alert-danger" role="alert">
-                    <i class="bi bi-exclamation-triangle"></i> 대시보드 ID가 없습니다.
-                </div>
-            `;
-      return;
-    }
-
-    // Validate chart configuration
-    if (!chartConfig || (!chartConfig.x_axis && !chartConfig.y_axis)) {
-      console.warn("Chart configuration is incomplete, using defaults");
-    }
-
-    // 다중 차트 vs 단일 차트 결정
+    // 다중 차트 설정
     const isMultiChart = true;
-    const chartConfigs = [];
+    const chartConfigs = [
+      {
+        title: "차트 1: 달력_연도_월별 총매출액 분석",
+        x_axis: "달력_연도_월",
+        y_axis: "총매출액",
+        chart_type: "bar",
+        is_multi_series: false
+      },
+      {
+        title: "차트 2: 달력_연도_월별 유통경로별 총매출액 분석",
+        x_axis: "달력_연도_월",
+        y_axis: "총매출액",
+        chart_type: "bar",
+        is_multi_series: true,
+        group_by_column: "유통경로"
+      },
+      {
+        title: "차트 3: 달력_연도_월별 제품군별 총매출액 분석",
+        x_axis: "달력_연도_월",
+        y_axis: "총매출액",
+        chart_type: "bar",
+        is_multi_series: true,
+        group_by_column: "제품군"
+      }
+    ];
+
+    // Multi-chart 레이아웃 표시
+    const multiChartContainer = document.querySelector('.multi-chart-container');
+    const singleChartContainer = document.querySelector('.chart-container:not(.chart-item)');
+
+    if (isMultiChart && multiChartContainer) {
+      multiChartContainer.style.display = 'block';
+      multiChartContainer.setAttribute('data-chart-count', chartConfigs.length);
+
+      if (singleChartContainer) {
+        singleChartContainer.style.display = 'none';
+      }
+    }
 
     if (isMultiChart) {
       window.dashboardController = new MultiChartDashboardController(
@@ -982,15 +1099,18 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       window.dashboardController = new DashboardController(
         dashboardId,
-        chartConfigs[0] || chartConfig
+        chartConfigs[0]
       );
     }
   } catch (error) {
     console.error("Failed to initialize dashboard:", error);
-    document.getElementById("chart").innerHTML = `
-            <div class="alert alert-danger" role="alert">
-                <i class="bi bi-exclamation-triangle"></i> 대시보드 초기화 중 오류가 발생했습니다.
-            </div>
-        `;
+    const chartElement = document.getElementById("chart") || document.getElementById("chart-0");
+    if (chartElement) {
+      chartElement.innerHTML = `
+              <div class="alert alert-danger" role="alert">
+                  <i class="bi bi-exclamation-triangle"></i> 대시보드 초기화 중 오류가 발생했습니다.
+              </div>
+          `;
+    }
   }
 });
