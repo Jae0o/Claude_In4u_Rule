@@ -26,13 +26,22 @@
     {
       "tag": "style-font-variable-convention",
       "content": ".claude/Convention/StyleFontVariableConvention.md 파일의 규칙을 엄격히 준수합니다."
+    },
+    {
+      "tag": "style-color-variable-convention",
+      "content": ".claude/Convention/StyleColorVariableConvention.md 파일의 규칙을 엄격히 준수합니다."
     }
   ],
   "instructions": [
     "모든 코드 작성 전에 .claude/Convention 폴더의 관련 규칙을 확인하고 적용하세요.",
     "ClassNameConvention.md의 네이밍 규칙을 모든 CSS 클래스명에 적용하세요.",
+
     "모든 CSS 변수와 폰트 이름은 StyleFontVariableConvention.md의 명명 규칙을 따르세요",
     "모든 CSS 변수와 폰트 관련 스타일은 StyleFontVariableConvention.md의 가이드라인을 준수해야 합니다.",
+
+    "모든 CSS 변수와 색상 이름은 StyleColorVariableConvention.md의 명명 규칙을 따르세요",
+    "모든 CSS 변수와 색상 관련 스타일은 StyleColorVariableConvention.md의 가이드라인을 준수해야 합니다.",
+
     "Convention 위반 코드 발견 시 즉시 지적하고 올바른 방법을 제안하세요."
   ]
 }

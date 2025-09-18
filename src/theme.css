@@ -1,0 +1,56 @@
+:root {
+  --font-size-12: 0.75rem; /* 12px - 메타데이터, 보조 텍스트 */
+  --font-size-14: 0.875rem; /* 14px - 기본 본문 */
+  --font-size-16: 1rem; /* 16px - 강조 본문 */
+  --font-size-18: 1.125rem; /* 18px - 섹션 제목 */
+  --font-size-20: 1.25rem; /* 20px - 페이지 제목 */
+  --font-size-25: 1.5625rem; /* 25px - 메인 타이틀 */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* 1. Core Colors (핵심 시맨틱 색상) */
+  --color-white: #fefefe;
+  --color-black: #444444;
+  --color-error: #ed1b24;
+  --color-success: #01c853;
+  --color-warning: #f2f201;
+  --color-info: #1aebff;
+
+  /* 2. Gray Scale System (회색 계열) */
+  --color-gray-50: #f9f9f9;
+  --color-gray-100: #f1f1f1;
+  --color-gray-200: #ebebeb;
+  --color-gray-400: #b5b5b5;
+  --color-gray-600: #9b9b9b;
+  --color-gray-800: #686668;
+  --color-gray-900: #525152;
+
+  /* 3. Primary Brand Colors (브랜드 색상) */
+  --color-primary-100: #eff4ff;
+  --color-primary-300: #dde7f9;
+  --color-primary-500: #729ce5;
+  --color-primary-700: #5d8de1;
+  --color-primary-900: #4a7bc8;
+
+  /* 4. Theme Support Colors (테마 지원 색상) */
+  /* Dark Theme */
+  --color-dark-bg-primary: #1f1f1f;
+  --color-dark-bg-secondary: #292929;
+  --color-dark-bg-elevated: #3e3e3e;
+  --color-dark-text-primary: #ffffff;
+  --color-dark-text-secondary: #cacaca;
+  /* High Contrast Theme */
+  --color-contrast-bg: #0a060b;
+  --color-contrast-text: #1aebff;
+  --color-contrast-accent: #f2f201;
+
+  /* 5. Functional Colors (기능별 색상) */
+  --color-accent-pink: #f2a4c6;
+  --color-accent-orange: #f6bd85;
+  --color-border-default: #ebebeb;
+  --color-shadow-default: rgba(145, 145, 145, 0.196);
+  --color-overlay: rgba(255, 255, 255, 0.6);
+}
