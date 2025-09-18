@@ -8,7 +8,9 @@
       "Bash(npm run dev:*)",
       "Bash(npm uninstall:*)",
       "Bash(curl:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "mcp__serena__list_dir",
+      "mcp__serena__activate_project"
     ],
     "deny": [],
     "ask": [],
