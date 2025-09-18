@@ -20,7 +20,10 @@
     <!-- Modern Dashboard Styles -->
     <link href="{{ url_for('static', path='/css/variables.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', path='/css/dashboard-modern.css') }}" rel="stylesheet">
-    
+
+    <!-- Base CSS -->
+    <link href="base.css" rel="stylesheet">
+
     <!-- Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-3.1.0.min.js" charset="utf-8"></script>
     
@@ -30,7 +33,7 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-dark" style="background-color: #2a4a72;">
+    <nav class="navbar navbar-dark">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">
                 <i class="bi bi-bar-chart"></i> BXG 분석 대시보드

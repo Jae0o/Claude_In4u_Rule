@@ -49,7 +49,7 @@ The dashboard system supports both single and multi-chart layouts:
 
 - 요청 사항 수행 시 정확하게 요청 한 부분에 대해서만 수정을 진행
   - 의도하지 않은 스타일 수정 금지
-  - 요청 사항 외 추가적인 수정 금지
+  - 요청 사항 외 독자적인 추가 수정 금지
 - Maintain existing Bootstrap classes and structure
 - Follow Korean localization patterns (button text, labels, etc.)
 
