@@ -6,6 +6,18 @@
     margin-bottom: 20px;
 }
 
+.dashboard__sidebar__filter_panel h5 {
+    font-size: var(--font-size-18);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 1rem;
+    color: #2a4a72;
+}
+
+.dashboard__sidebar__filter_panel h5 i {
+    font-size: var(--font-size-16);
+    margin-right: 0.5rem;
+}
+
 .dashboard__content__chart_container {
     background-color: white;
     border-radius: 8px;
@@ -20,14 +32,54 @@
     padding: 15px;
 }
 
+.dashboard__sidebar__stats_panel h6 {
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 0.75rem;
+    color: #2a4a72;
+}
+
+.dashboard__sidebar__stats_panel h6 i {
+    font-size: var(--font-size-14);
+    margin-right: 0.5rem;
+}
+
+#stats-content {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-normal);
+}
+
+#stats-content div {
+    margin-bottom: 0.5rem;
+}
+
+#stats-content span {
+    font-weight: var(--font-weight-medium);
+    color: #2a4a72;
+}
+
 .dashboard__sidebar__filter_group {
     margin-bottom: 20px;
+}
+
+.dashboard__sidebar__filter_group .form-label {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-medium);
+    color: #495057;
+    margin-bottom: 0.5rem;
 }
 
 .dashboard__content__loading {
     display: none;
     text-align: center;
     padding: 20px;
+}
+
+.dashboard__content__loading p {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-normal);
+    color: #6c757d;
+    margin-top: 1rem;
 }
 
 #chart {
@@ -100,5 +152,24 @@
 .dashboard__content__chart_header h6 {
     margin: 0;
     color: #333;
-    font-weight: 600;
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-semibold);
+    font-family: inherit;
+}
+
+/* Alert Messages Typography */
+.alert {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-normal);
+    font-family: inherit;
+}
+
+.alert i {
+    font-size: var(--font-size-16);
+    margin-right: 0.5rem;
+}
+
+/* Spinner Loading Text */
+.visually-hidden {
+    font-size: var(--font-size-12);
 }

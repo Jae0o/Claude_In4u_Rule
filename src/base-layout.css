@@ -1,4 +1,101 @@
 /* Base styles for BXG Dashboard */
+
+/* Font Size Variables - Convention 준수 */
+:root {
+  --font-size-12: 0.75rem;     /* 12px - 메타데이터, 보조 텍스트 */
+  --font-size-14: 0.875rem;    /* 14px - 기본 본문 */
+  --font-size-16: 1rem;         /* 16px - 강조 본문 */
+  --font-size-18: 1.125rem;     /* 18px - 섹션 제목 */
+  --font-size-20: 1.25rem;      /* 20px - 페이지 제목 */
+  --font-size-25: 1.5625rem;    /* 25px - 메인 타이틀 */
+}
+
+/* Font Weight Variables - Convention 준수 */
+:root {
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* Global Font Settings - Pretendard 전체 적용 */
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
+  color: #333;
+}
+
+/* Typography - 제목 계층 구조 */
+h1 {
+  font-size: var(--font-size-25);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+}
+
+h4, h5, h6 {
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+}
+
+/* Form Elements - Convention 준수 */
+.form-label {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+.form-select,
+.form-control {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-normal);
+  font-family: inherit;
+}
+
+/* Button Typography */
+.btn {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.btn-sm {
+  font-size: var(--font-size-12);
+}
+
+.btn-lg {
+  font-size: var(--font-size-16);
+}
+
+/* Text Utilities */
+.text-muted {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-normal);
+}
+
+/* Navbar Styles */
 .dashboard__navbar {
     background-color: #2a4a72 !important;
+}
+
+.dashboard__navbar .navbar-brand {
+    font-size: var(--font-size-18);
+    font-weight: var(--font-weight-semibold);
+    font-family: inherit;
 }

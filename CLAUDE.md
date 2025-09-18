@@ -119,7 +119,10 @@ Filters in the sidebar automatically connect to mock data:
  ┃
  ┣ 📂Convention
     ┗ 📜ClassNameConvention.md
+    ┗ 📜StyleFontVariableConvention.md
 
 ```
 
 - ClassNameConvention.md의 네이밍 규칙을 모든 CSS 클래스명에 적용
+- 모든 CSS 변수와 폰트 이름은 StyleFontVariableConvention.md의 명명 규칙을 따르세요.
+- 모든 CSS 변수와 폰트 관련 스타일은 StyleFontVariableConvention.md의 가이드라인을 준수해야 합니다.
