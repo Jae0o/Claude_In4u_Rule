@@ -12,10 +12,21 @@
       "mcp__serena__list_dir",
       "mcp__serena__activate_project",
       "mcp__sequential-thinking__sequentialthinking",
-      "Bash(del \"D:\\Repo\\Claude_In4u_Rule\\src\\dashboard.html\")"
+      "Bash(del \"D:\\Repo\\Claude_In4u_Rule\\src\\dashboard.html\")",
+      "mcp__serena__search_for_pattern"
     ],
     "deny": [],
-    "ask": [],
-    "customInstructions": ""
-  }
+    "ask": []
+  },
+  "rules": [
+    {
+      "tag": "className-convention",
+      "content": ".claude/Convention/ClassNameConvention.md 파일의 규칙을 엄격히 준수합니다."
+    }
+  ],
+  "instructions": [
+    "모든 코드 작성 전에 .claude/Convention 폴더의 관련 규칙을 확인하고 적용하세요.",
+    "ClassNameConvention.md의 네이밍 규칙을 모든 CSS 클래스명에 적용하세요.",
+    "Convention 위반 코드 발견 시 즉시 지적하고 올바른 방법을 제안하세요."
+  ]
 }

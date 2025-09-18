@@ -650,7 +650,7 @@ class MultiChartDashboardController extends DashboardController {
   renderAllCharts() {
     this.chartConfigs.forEach((config, index) => {
       // 차트 헤더 업데이트
-      const chartHeader = document.querySelector(`.chart-item[data-chart-index="${index}"] .chart-header h6`);
+      const chartHeader = document.querySelector(`.dashboard__content__chart-item[data-chart-index="${index}"] .dashboard__content__chart-header h6`);
       if (chartHeader) {
         chartHeader.textContent = config.title || `Chart ${index + 1}`;
       }
@@ -1078,8 +1078,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     // Multi-chart 레이아웃 표시
-    const multiChartContainer = document.querySelector('.multi-chart-container');
-    const singleChartContainer = document.querySelector('.chart-container:not(.chart-item)');
+    const multiChartContainer = document.querySelector('.dashboard__content__multi-chart-container');
+    const singleChartContainer = document.querySelector('.dashboard__content__chart-container:not(.dashboard__content__chart-item)');
 
     if (isMultiChart && multiChartContainer) {
       multiChartContainer.style.display = 'block';
