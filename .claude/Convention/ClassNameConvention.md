@@ -1,18 +1,26 @@
-# **Class Naming Convention 🎨**
+# **Custom CSS Class Naming Convention 🎨**
 
-코드의 일관성과 유지보수성을 높이기 위해, BEM 방법론을 우리 팀에 맞게 수정한 Custom 규칙
+코드의 일관성과 유지보수성을 높이기 위한 Custom 규칙
 
-### **1. 기본 구조**
+### **1. 핵심 원칙**
+
+1. **계층 구조 준수**: 클래스 이름은 항상 `Header__Block__Element_Modifier` 순서를 따름
+2. **평평한 Element 구조**: `...__item__button` 과 같이 Element를 중첩하지 않으며, `item`과 `button`은 모두 `menu`라는 Block에 속한 동등한 Element
+3. **역할 중심적 이름**: `<button>` 태그라고 해서 `...__button`으로 짓는 것이 아니라, `profile_button`처럼 **역할과 기능**이 드러나도록 이름을 지음
+4. 반드시 4개의 요소(header, block, element, modifier)를 모두 사용할 필요 없이 필요에 따라 후순위 요소없이 사용 가능
+5. modifier 앞 에는 element-modifier 가 아닌 **element_modifier(언더스코어 1개) 가 적용**되어야함
+
+### **2.. 기본 구조**
 
 클래스 네임은 **Header, Block, Element, Modifier** 4가지 요소를 조합하여 구성.
 
-각 부분은 `__` (언더스코어 2개)로 연결하고, Modifier는 \_(언더스코어 1개)로 구분
+각 부분은 `__` (언더스코어 2개)로 연결하고, **Modifier는 \_(언더스코어 1개)로 구분**
 
 ```tsx
 <div className="Header__Block__Element_Modifier" />
 ```
 
-### **2. 구성 요소 정의**
+### **3. 구성 요소 정의**
 
 - **`Header` (페이지 / 최상위 컴포넌트)**
   - **역할**: 페이지 또는 기능의 가장 큰 단위 컨테이너를 의미하며, 스타일 충돌을 방지하는 접두사(prefix) 역할
@@ -28,13 +36,13 @@
 - **`Modifier` (요소의 형태/타입)**
   - **역할**: Element가 어떤 형태(예: 버튼, 박스, 텍스트)로 보이는지 구체적인 시각적 타입을 정의합니다.
   - **규칙 :** 반드시 **`Modifier`** 앞 `_` (언더스코어 1개 ) 추가
-  - **예시**: `...--text`, `...--button`, `...--box`
+  - **예시**: `..._text`, `..._button`, `..._box`
 
-### **3. 적용 예시 (React)**
+### **4. 적용 예시 (React)**
 
 아래 예시는 `navbar`라는 **Header** 안에 `menu`라는 **Block**이 있고, 그 안에 여러 **Element**들이 포함된 구조.
 
-Element들은 역할에 따라 `item`, `profile-button` 등으로 구체적으로 명명
+Element들은 역할에 따라 `item`, `profile_button` 등으로 구체적으로 명명
 
 ```tsx
 const Navbar = () => {
@@ -45,17 +53,17 @@ const Navbar = () => {
       <ul className="navbar__menu">
         {/* Element: item */}
         <li className="navbar__menu__item">
-          {/* Element: profile-button (역할 기반 이름) */}
+          {/* Element: profile_button (역할 기반 이름) */}
           <button className="navbar__menu__profile_button">Profile</button>
         </li>
 
         <li className="navbar__menu__item">
-          {/* Element: notification-button */}
+          {/* Element: notification_button */}
           <button className="navbar__menu__notification_button">Alerts</button>
         </li>
 
         <li className="navbar__menu__item">
-          {/* Element: logout-button */}
+          {/* Element: logout_button */}
           <button className="navbar__menu__logout_button">Logout</button>
         </li>
       </ul>
@@ -63,11 +71,5 @@ const Navbar = () => {
   );
 };
 ```
-
-### **4. 핵심 원칙**
-
-1. **계층 구조 준수**: 클래스 이름은 항상 `Header__Block__Element` 순서를 따름
-2. **평평한 Element 구조**: `...__item__button` 과 같이 Element를 중첩하지 않으며, `item`과 `button`은 모두 `menu`라는 Block에 속한 동등한 Element
-3. **역할 중심적 이름**: `<button>` 태그라고 해서 `...__button`으로 짓는 것이 아니라, `profile_button`처럼 **역할과 기능**이 드러나도록 이름을 지음
 
 ---
