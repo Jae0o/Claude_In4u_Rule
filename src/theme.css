@@ -11,8 +11,9 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  --font-family-primary: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-  --font-family-secondary: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  --font-family-primary: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    sans-serif;
+  --font-family-secondary: "Inter", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
   --font-family-system: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
 
   --color-white: #ffffff;
@@ -62,7 +63,9 @@ h3 {
   font-weight: var(--font-weight-semibold);
 }
 
-h4, h5, h6 {
+h4,
+h5,
+h6 {
   font-family: var(--font-family-primary);
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-medium);
@@ -75,14 +78,16 @@ h4, h5, h6 {
 }
 
 /* 입력 필드 폰트 적용 */
-.form-control, .form-select {
+.form-control,
+.form-select {
   font-family: var(--font-family-primary);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-normal);
 }
 
 /* 네비게이션 폰트 및 색상 적용 */
-.navbar-brand, .nav-link {
+.navbar-brand,
+.nav-link {
   font-family: var(--font-family-primary);
   font-weight: var(--font-weight-medium);
   color: var(--color-white) !important;
@@ -100,7 +105,8 @@ h4, h5, h6 {
   border-color: var(--color-primary-700);
 }
 
-.btn-primary:focus, .btn-primary:active {
+.btn-primary:focus,
+.btn-primary:active {
   background-color: var(--color-primary-900);
   border-color: var(--color-primary-900);
   box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
@@ -127,30 +133,40 @@ a:hover {
 }
 
 /* 폼 요소 포커스 색상 */
-.form-control:focus, .form-select:focus {
+.form-control:focus,
+.form-select:focus {
   border-color: var(--color-primary-300);
   box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
 }
 
 /* 카드 및 박스 그림자 개선 */
-.card, .dashboard__chart__container, .dashboard__chart__item {
+.card,
+.dashboard__chart__container,
+.dashboard__chart__item {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   border: 1px solid var(--color-gray-200);
 }
 
-.card:hover, .dashboard__chart__container:hover, .dashboard__chart__item:hover {
+.card:hover,
+.dashboard__chart__container:hover,
+.dashboard__chart__item:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 /* 접근성 및 사용성 개선 */
 /* 포커스 표시 개선 */
-button:focus, .btn:focus, input:focus, select:focus, textarea:focus {
+button:focus,
+.btn:focus,
+input:focus,
+select:focus,
+textarea:focus {
   outline: 2px solid var(--color-primary-500);
   outline-offset: 2px;
 }
 
 /* 텍스트 대비 개선 */
-.text-muted, .text-secondary {
+.text-muted,
+.text-secondary {
   color: var(--color-gray-600) !important;
 }
 
@@ -159,6 +175,17 @@ button:focus, .btn:focus, input:focus, select:focus, textarea:focus {
   background-color: var(--color-primary-100);
   border-color: var(--color-primary-300);
   color: var(--color-primary-900);
+}
+
+/* 아이콘 박스 완전한 원형 만들기 */
+.bg-primary.bg-opacity-10.p-2.rounded-circle,
+.bg-success.bg-opacity-10.p-2.rounded-circle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 /* 테이블 및 리스트 개선 */
@@ -182,4 +209,70 @@ button:focus, .btn:focus, input:focus, select:focus, textarea:focus {
 .nav-tabs .nav-link:hover {
   border-color: var(--color-primary-100);
   color: var(--color-primary-500);
+}
+
+/* BXG 트렌디 디자인 컴포넌트 */
+/* 모던 그라데이션 */
+.bxg__gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%);
+}
+
+.bxg__gradient-surface {
+  background: linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+}
+
+/* 글래스모피즘 효과 */
+.bxg__glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 모던 그림자 시스템 */
+.bxg__shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(16, 24, 40, 0.05);
+}
+
+.bxg__shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(16, 24, 40, 0.1), 0 2px 4px -1px rgba(16, 24, 40, 0.06);
+}
+
+.bxg__shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(16, 24, 40, 0.1), 0 4px 6px -2px rgba(16, 24, 40, 0.05);
+}
+
+.bxg__shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(16, 24, 40, 0.1), 0 10px 10px -5px rgba(16, 24, 40, 0.04);
+}
+
+/* 인터랙션 효과 */
+.bxg__hover-lift {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bxg__hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(16, 24, 40, 0.15), 0 10px 10px -5px rgba(16, 24, 40, 0.08);
+}
+
+/* 모던 보더 반경 */
+.bxg__rounded-sm {
+  border-radius: 6px;
+}
+.bxg__rounded-md {
+  border-radius: 8px;
+}
+.bxg__rounded-lg {
+  border-radius: 12px;
+}
+.bxg__rounded-xl {
+  border-radius: 16px;
+}
+
+/* 향상된 네비게이션 바 */
+.navbar.bxg__navbar {
+  background: var(--color-primary-500);
+  border-bottom: 1px solid var(--color-primary-600);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 1px 3px 0 rgba(16, 24, 40, 0.1), 0 1px 2px 0 rgba(16, 24, 40, 0.06);
 }

@@ -1094,7 +1094,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const singleChartContainer = document.querySelector('.dashboard__chart__container:not(.dashboard__chart__item)');
 
     if (isMultiChart && multiChartContainer) {
-      multiChartContainer.style.display = 'block';
+      multiChartContainer.style.display = 'grid';
       multiChartContainer.setAttribute('data-chart-count', chartConfigs.length);
 
       if (singleChartContainer) {

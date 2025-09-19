@@ -17,7 +17,10 @@
       "mcp__playwright__browser_navigate",
       "mcp__playwright__browser_click",
       "mcp__playwright__browser_select_option",
-      "mcp__playwright__browser_close"
+      "mcp__playwright__browser_close",
+      "WebFetch(domain:www.bxgdocs.com)",
+      "mcp__serena__find_symbol",
+      "mcp__serena__search_for_pattern"
     ],
     "deny": [],
     "ask": [],

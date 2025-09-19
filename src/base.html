@@ -70,38 +70,59 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter2/1.5.4/crossfilter.min.js"></script>
   </head>
   <body>
-    <nav class="navbar navbar-dark">
+    <nav class="navbar navbar-dark bxg__navbar">
       <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">
-          <i class="bi bi-bar-chart"></i> BXG 분석 대시보드
+          <i class="bi bi-graph-up-arrow"></i> BXG Analytics
         </span>
+        <div class="navbar-nav ms-auto">
+          <span class="nav-text text-white-50 small">데이터 기반 인사이트 플랫폼</span>
+        </div>
       </div>
     </nav>
 
-    <main class="container-fluid mt-3">
-      <div class="row">
-        <!-- 제목 및 설명 -->
+    <main class="container-fluid">
+      <!-- 헤더 섹션 -->
+      <div class="row py-4 bxg__gradient-surface">
         <div class="col-12">
-          <h2>BXG 데이터 분석 대시보드</h2>
-          <p class="text-muted">대시보드를 통해 데이터를 분석하세요</p>
-          <hr />
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <h1 class="mb-2 fw-semibold">데이터 분석 대시보드</h1>
+              <p class="text-muted mb-0">실시간 비즈니스 인사이트와 데이터 시각화</p>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-primary btn-sm bxg__rounded-md">
+                <i class="bi bi-download"></i> 내보내기
+              </button>
+              <button class="btn btn-primary btn-sm bxg__rounded-md">
+                <i class="bi bi-arrow-clockwise"></i> 새로고침
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row p-3">
         <!-- 필터 패널 -->
         <div
           class="col-md-3"
           style="flex: 0 0 20%; max-width: 20%"
         >
-          <div class="dashboard__filter__panel">
-            <h5><i class="bi bi-funnel"></i> 필터</h5>
+          <div class="dashboard__filter__panel bxg__shadow-md bxg__rounded-lg">
+            <div class="d-flex align-items-center mb-3">
+              <div class="bg-primary bg-opacity-10 p-2 rounded-circle me-2">
+                <i class="bi bi-funnel text-primary"></i>
+              </div>
+              <h6 class="mb-0 fw-semibold">스마트 필터</h6>
+            </div>
 
             <!-- 달력 연도월 필터 -->
             <div class="dashboard__filter__group">
-              <label class="form-label">달력 연도월</label>
+              <label class="form-label small text-muted fw-medium">
+                <i class="bi bi-calendar3 me-1"></i>달력 연도월
+              </label>
               <select
-                class="form-select form-select-sm"
+                class="form-select form-select-sm bxg__rounded-md"
                 multiple
                 id="filter_month"
                 data-column="달력_연도_월"
@@ -121,24 +142,28 @@
 
             <!-- 유통경로 필터 -->
             <div class="dashboard__filter__group">
-              <label class="form-label">유통경로</label>
+              <label class="form-label small text-muted fw-medium">
+                <i class="bi bi-shop me-1"></i>유통경로
+              </label>
               <select
-                class="form-select form-select-sm"
+                class="form-select form-select-sm bxg__rounded-md"
                 id="filter_channel"
                 data-column="유통경로"
                 data-type="select"
               >
-                <option value="">전체</option>
-                <option value="온라인">온라인</option>
-                <option value="오프라인">오프라인</option>
+                <option value="">전체 채널</option>
+                <option value="온라인">🌐 온라인</option>
+                <option value="오프라인">🏪 오프라인</option>
               </select>
             </div>
 
             <!-- 제품군 필터 -->
             <div class="dashboard__filter__group">
-              <label class="form-label">제품군</label>
+              <label class="form-label small text-muted fw-medium">
+                <i class="bi bi-box-seam me-1"></i>제품군
+              </label>
               <select
-                class="form-select form-select-sm"
+                class="form-select form-select-sm bxg__rounded-md"
                 multiple
                 id="filter_product"
                 data-column="제품군"
@@ -157,21 +182,34 @@
               </select>
             </div>
 
-            <button
-              type="button"
-              class="btn btn-secondary btn-sm w-100"
-              onclick="resetFilters()"
-            >
-              <i class="bi bi-arrow-clockwise"></i> 필터 초기화
-            </button>
+            <div class="mt-4">
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm w-100 bxg__rounded-md"
+                onclick="resetFilters()"
+              >
+                <i class="bi bi-arrow-clockwise"></i> 필터 초기화
+              </button>
+            </div>
           </div>
 
           <!-- 통계 패널 -->
-          <div class="dashboard__stats__panel">
-            <h6><i class="bi bi-graph-up"></i> 통계 정보</h6>
-            <div id="stats-content">
-              <div>총 데이터: <span id="total-count">0</span>행</div>
-              <div>필터링된 데이터: <span id="filtered-count">0</span>행</div>
+          <div class="dashboard__stats__panel bxg__shadow-sm bxg__rounded-lg mt-3">
+            <div class="d-flex align-items-center mb-3">
+              <div class="bg-success bg-opacity-10 p-2 rounded-circle me-2">
+                <i class="bi bi-graph-up text-success"></i>
+              </div>
+              <h6 class="mb-0 fw-semibold">데이터 현황</h6>
+            </div>
+            <div id="stats-content" class="small">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-muted">전체 데이터</span>
+                <span class="badge bg-primary bg-opacity-10 text-primary" id="total-count">0</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="text-muted">필터링된 데이터</span>
+                <span class="badge bg-success bg-opacity-10 text-success" id="filtered-count">0</span>
+              </div>
             </div>
           </div>
         </div>
@@ -184,15 +222,30 @@
           <!-- 다중 차트 레이아웃 -->
           <div
             class="dashboard__multi-chart__container"
-            data-chart-count="1"
-            style="display: none"
+            data-chart-count="3"
           >
             <div
-              class="dashboard__chart__container dashboard__chart__item"
+              class="dashboard__chart__container dashboard__chart__item bxg__shadow-lg bxg__rounded-xl bxg__hover-lift"
               data-chart-index="0"
             >
-              <div class="dashboard__chart__header">
-                <h6>Chart 1</h6>
+              <div class="dashboard__chart__header border-bottom pb-3">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center">
+                    <div class="bg-primary bg-opacity-10 p-2 rounded-circle me-2">
+                      <i class="bi bi-bar-chart text-primary"></i>
+                    </div>
+                    <h6 class="mb-0 fw-semibold">Chart 1</h6>
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                      <i class="bi bi-three-dots"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-download me-2"></i>내보내기</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-fullscreen me-2"></i>전체화면</a></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
               <div
                 class="dashboard__chart__loading chart-loading"
@@ -216,8 +269,24 @@
               class="dashboard__chart__container dashboard__chart__item"
               data-chart-index="1"
             >
-              <div class="dashboard__chart__header">
-                <h6>Chart 2</h6>
+              <div class="dashboard__chart__header border-bottom pb-3">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center">
+                    <div class="bg-primary bg-opacity-10 p-2 rounded-circle me-2">
+                      <i class="bi bi-graph-up text-primary"></i>
+                    </div>
+                    <h6 class="mb-0 fw-semibold">Chart 2</h6>
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                      <i class="bi bi-three-dots"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-download me-2"></i>내보내기</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-fullscreen me-2"></i>전체화면</a></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
               <div
                 class="dashboard__chart__loading chart-loading"
@@ -241,8 +310,24 @@
               class="dashboard__chart__container dashboard__chart__item"
               data-chart-index="2"
             >
-              <div class="dashboard__chart__header">
-                <h6>Chart 3</h6>
+              <div class="dashboard__chart__header border-bottom pb-3">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center">
+                    <div class="bg-primary bg-opacity-10 p-2 rounded-circle me-2">
+                      <i class="bi bi-pie-chart text-primary"></i>
+                    </div>
+                    <h6 class="mb-0 fw-semibold">Chart 3</h6>
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                      <i class="bi bi-three-dots"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-download me-2"></i>내보내기</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-fullscreen me-2"></i>전체화면</a></li>
+                    </ul>
+                  </div>
+                </div>
               </div>
               <div
                 class="dashboard__chart__loading chart-loading"
@@ -265,20 +350,44 @@
           </div>
 
           <!-- 기존 단일 차트 레이아웃 -->
-          <div class="dashboard__chart__container">
+          <div class="dashboard__chart__container bxg__shadow-xl bxg__rounded-xl bxg__hover-lift" style="display: none">
+            <div class="dashboard__chart__header border-bottom pb-3 mb-3">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                  <div class="bg-primary bg-opacity-10 p-2 rounded-circle me-2">
+                    <i class="bi bi-graph-up text-primary"></i>
+                  </div>
+                  <div>
+                    <h5 class="mb-0 fw-semibold">BXG 데이터 인사이트</h5>
+                    <small class="text-muted">실시간 비즈니스 분석</small>
+                  </div>
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-sm btn-outline-primary bxg__rounded-md">
+                    <i class="bi bi-download"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-secondary bxg__rounded-md">
+                    <i class="bi bi-fullscreen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-secondary bxg__rounded-md">
+                    <i class="bi bi-three-dots"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
             <div
-              class="dashboard__chart__loading"
+              class="dashboard__chart__loading text-center py-5"
               id="loading"
             >
-              <div
-                class="spinner-border text-primary"
-                role="status"
-              >
+              <div class="spinner-border text-primary mb-3" role="status">
                 <span class="visually-hidden">로딩 중...</span>
               </div>
-              <p>데이터를 불러오는 중입니다...</p>
+              <div>
+                <p class="mb-1 fw-medium">데이터를 불러오는 중입니다</p>
+                <small class="text-muted">잠시만 기다려주세요...</small>
+              </div>
             </div>
-            <div id="chart"></div>
+            <div id="chart" class="bxg__rounded-lg overflow-hidden"></div>
           </div>
         </div>
       </div>
