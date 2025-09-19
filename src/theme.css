@@ -11,6 +11,10 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
+  --font-family-primary: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  --font-family-secondary: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  --font-family-system: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
   --color-white: #ffffff;
   --color-bg-main: #eff4f9;
   --color-black: #444444;
@@ -28,4 +32,55 @@
   --color-primary-500: #4a90e2;
   --color-primary-700: #357abd;
   --color-primary-900: #2a5f99;
+}
+
+/* 기본 폰트 적용 */
+body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-normal);
+}
+
+/* 제목 폰트 적용 */
+h1 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-25);
+  font-weight: var(--font-weight-semibold);
+}
+
+h2 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-semibold);
+}
+
+h3 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-semibold);
+}
+
+h4, h5, h6 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+}
+
+/* 버튼 폰트 적용 */
+.btn {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* 입력 필드 폰트 적용 */
+.form-control, .form-select {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-normal);
+}
+
+/* 네비게이션 폰트 적용 */
+.navbar-brand, .nav-link {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-medium);
 }

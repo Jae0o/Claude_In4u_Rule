@@ -6,21 +6,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 현재 프로젝트는 Dashboard 템플릿을 만들기 위한 UI 개선 프로젝트입니다. Frontend-only project using static HTML files with Bootstrap and Plotly.js for charting.
 
-## Repository Status
+## Development Commands
 
-## Initial Setup Guidance
+### Running the Project
 
-1. UI 구조 및 스타일 개발만을 위해 Mock Data를 구성
-2. Live Server 를 통해 테스트 환경 구성
-   (Live Server 진입점은 항상 src/base.html 파일)
+No build process required. Open `src/base.html` in Live Server or any local web server.
+
+```bash
+# Entry point for development
+# Live Server 진입점은 항상 src/base.html 파일
+```
 
 ## Architecture
 
 ### File Structure
 
-- `src/base.html` - Base template with navigation, includes Bootstrap 5, Plotly.js, and Crossfilter.js
-- `src/dashboard.html` - Main dashboard template with filtering panel and chart area
-- `.claude/ordering_images/` - Image assets directory (currently empty)
+- `src/base.html` - Main entry point with navigation, includes Bootstrap 5, Plotly.js, and Crossfilter.js
+- `src/base-dashboard.js` - JavaScript controllers for single and multi-chart dashboards
+- `src/base-dashboard.css` - Dashboard-specific styling
+- `src/base-layout.css` - Layout and responsive design styles
+- `src/theme.css` - Theme variables and color definitions
+- `.claude/Convention/` - Code conventions and naming rules
+- `.claude/ordering_images/` - UI reference images
 
 ### Technology Stack
 
@@ -38,61 +45,9 @@ The dashboard system supports both single and multi-chart layouts:
 - **Multi-Chart Mode**: Grid-based responsive layout supporting 1-3 charts with automatic sizing
 - **Responsive Design**: Mobile-first approach with collapsible layouts
 
-## Development Workflow
-
-### Entry Point
-
-- **Development**: Use Live Server with `src/base.html` as entry point
-- 프로젝트의 진입점은 src/base.html 파일
-
-### UI Development Guidelines
-
-- 요청 사항 수행 시 정확하게 요청 한 부분에 대해서만 수정을 진행
-  - 의도하지 않은 스타일 수정 금지
-  - 요청 사항 외 독자적인 추가 수정 금지
-- Maintain existing Bootstrap classes and structure
-- Follow Korean localization patterns (button text, labels, etc.)
-
-### Chart System
-
-The JavaScript includes two main controllers:
-
+JavaScript controllers:
 - `DashboardController` - Single chart dashboards
 - `MultiChartDashboardController` - Multi-chart layouts with grid system
-
-Charts support:
-
-- Real-time filtering with statistics updates
-- Korean/English mixed content
-- Responsive grid layouts (1, 2, or 3 charts)
-- Multiple chart types (bar, line, scatter, etc.)
-
-## Common Development Tasks
-
-### Running the Project
-
-No build process required. Open `src/base.html` in Live Server or any local web server.
-
-### Adding New Charts
-
-Charts are configured via JavaScript objects with properties:
-
-- `x_axis`, `y_axis` - Data column mappings
-- `chart_type` - Plotly chart type (bar, line, scatter)
-- `title` - Chart display title
-- `is_multi_series` - Enable grouping by additional column
-
-### Styling Modifications
-
-- Custom styles are embedded in `dashboard.html` template
-- Bootstrap 5 utilities should be preferred over custom CSS
-- Maintain consistent spacing using Bootstrap margin/padding classes
-
-## Notes
-
-- .claude 폴더 내부 ordering_images 폴더에 이미지가 존재한다면 이미지들을 미리 파악
-
-## Technical Notes
 
 ### Template System
 
@@ -101,7 +56,6 @@ Files use Jinja2-style template syntax (`{% %}`, `{{ }}`) suggesting this may in
 ### JavaScript Dependencies
 
 All external dependencies are loaded via CDN:
-
 - Bootstrap 5.3.0
 - Plotly.js 3.1.0
 - Crossfilter 1.5.4
