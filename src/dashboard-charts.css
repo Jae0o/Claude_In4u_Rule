@@ -1,0 +1,177 @@
+/* Dashboard Chart Components */
+/* 차트 관련 스타일들 - 모듈화된 CSS */
+
+/* Chart Card Components */
+.dashboard__content__chart_card {
+    border: none;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.dashboard__content__chart_card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+}
+
+/* Single Chart Container (Original) */
+.dashboard__content__chart_container {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px var(--color-shadow-default);
+    margin-bottom: 20px;
+}
+
+.dashboard__content__chart_card .card-header {
+    background: linear-gradient(135deg, var(--color-primary-100) 0%, var(--color-white) 100%);
+    border-bottom: 2px solid var(--color-primary-300);
+    padding: 1rem;
+}
+
+.dashboard__content__chart_card .card-body {
+    padding: 1rem;
+    min-height: 350px;
+}
+
+/* Chart Plot Area */
+#chart {
+    width: 100%;
+    height: 500px;
+}
+
+/* Multi-chart responsive layout */
+.dashboard__content__multi_chart_container {
+    display: grid;
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+/* 1개 차트: 전체폭 */
+.dashboard__content__multi_chart_container[data-chart-count="1"] {
+    grid-template-columns: 1fr;
+}
+
+/* 2개 차트: 50/50 분할 */
+.dashboard__content__multi_chart_container[data-chart-count="2"] {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* 3개 차트: 상단 50/50 + 하단 전체폭 레이아웃 */
+.dashboard__content__multi_chart_container[data-chart-count="3"] {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.dashboard__content__multi_chart_container[data-chart-count="3"] .dashboard__content__chart_item:nth-child(1),
+.dashboard__content__multi_chart_container[data-chart-count="3"] .dashboard__content__chart_item:nth-child(2) {
+    /* 첫 번째, 두 번째 차트는 상단 50/50 */
+}
+
+.dashboard__content__multi_chart_container[data-chart-count="3"] .dashboard__content__chart_item:nth-child(3) {
+    grid-column: 1 / -1; /* 세 번째 차트는 하단 전체폭 */
+}
+
+/* 모바일 반응형: 모든 차트를 세로로 배치 */
+@media (max-width: 768px) {
+    .dashboard__content__multi_chart_container {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto !important;
+        gap: 1.5rem;
+        padding: 0.5rem 0;
+    }
+
+    .dashboard__content__multi_chart_container .dashboard__content__chart_item {
+        grid-column: 1 !important;
+    }
+}
+
+/* Chart Item Card Styling */
+.dashboard__content__chart_item {
+    min-height: 400px;
+    position: relative;
+    background-color: var(--color-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
+    border: none;
+    overflow: hidden;
+}
+
+.dashboard__content__chart_item:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+}
+
+/* Chart Item Header */
+.dashboard__content__chart_item .card-header {
+    background: linear-gradient(135deg, var(--color-primary-100) 0%, var(--color-white) 100%);
+    border-bottom: 2px solid var(--color-primary-300);
+    padding: 1rem;
+}
+
+.dashboard__content__chart_item .card-body {
+    padding: 1rem;
+    min-height: 350px;
+}
+
+.dashboard__content__chart_plot {
+    width: 100%;
+    height: 350px;
+}
+
+/* Chart Header Styling */
+.dashboard__content__chart_header h6 {
+    margin: 0;
+    color: var(--color-gray-900);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-semibold);
+    font-family: inherit;
+}
+
+.dashboard__content__chart_header .bi {
+    color: var(--color-primary-600);
+    font-size: var(--font-size-14);
+}
+
+/* Loading States with Bootstrap Components */
+.dashboard__content__loading {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    background-color: var(--color-overlay-opaque);
+    border-radius: 8px;
+}
+
+.dashboard__content__loading p,
+.dashboard__loading__text {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-gray-600);
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard__content__loading .spinner-border,
+.dashboard__loading__spinner {
+    color: var(--color-primary-500) !important;
+}
+
+.dashboard__loading__spinner--large {
+    width: 3rem !important;
+    height: 3rem !important;
+}
+
+.dashboard__content__loading .progress,
+.dashboard__loading__progress {
+    width: 200px;
+    height: 4px;
+    background-color: var(--color-gray-200);
+    margin: 0 auto;
+}
+
+.dashboard__content__loading .progress-bar,
+.dashboard__loading__progress .progress-bar {
+    background-color: var(--color-primary-500);
+    width: 100%;
+}

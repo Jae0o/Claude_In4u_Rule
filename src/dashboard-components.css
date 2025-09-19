@@ -1,0 +1,150 @@
+/* Dashboard Common Components */
+/* 공통 컴포넌트 스타일들 - 모듈화된 CSS */
+
+/* Typography with Convention Variables */
+.dashboard__header__title {
+    font-size: var(--font-size-25);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-900);
+}
+
+.dashboard__header__subtitle {
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-gray-600);
+}
+
+.dashboard__navbar__title {
+    font-size: var(--font-size-20);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-white);
+}
+
+/* Statistics Card Component */
+.dashboard__sidebar__stats_card {
+    border: none;
+    box-shadow: var(--shadow-card);
+    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-gray-50) 100%);
+    transition: all 0.3s ease;
+}
+
+.dashboard__sidebar__stats_card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+}
+
+.dashboard__sidebar__stats_card .card-header {
+    background: linear-gradient(135deg, var(--color-primary-100) 0%, var(--color-white) 100%);
+    border-bottom: 2px solid var(--color-primary-300);
+    padding: 1rem;
+}
+
+.dashboard__sidebar__stats_card .card-subtitle {
+    color: var(--color-primary-700);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-semibold);
+}
+
+.dashboard__sidebar__stats_card .list-group-item {
+    padding: 0.75rem 1rem;
+    background-color: transparent;
+    border-color: var(--color-border-subtle, rgba(0,0,0,0.05));
+}
+
+.dashboard__sidebar__stats_card .badge {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-medium);
+    padding: 0.35rem 0.65rem;
+    min-width: 45px;
+}
+
+/* Statistics Content */
+#stats-content {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-normal);
+}
+
+/* Form Controls Enhancement */
+.form-select[multiple] {
+    border-color: var(--color-border-default);
+    background-color: var(--color-white);
+}
+
+.form-select[multiple]:focus {
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 0.25rem var(--color-focus-shadow);
+}
+
+.form-select option:checked {
+    background-color: var(--color-primary-500) !important;
+    color: var(--color-white) !important;
+}
+
+/* Bootstrap Form Control Override */
+.form-control:focus, .form-select:focus {
+    border-color: var(--color-primary-500) !important;
+    box-shadow: 0 0 0 0.25rem var(--color-focus-shadow) !important;
+}
+
+/* Button Enhancements */
+.btn-outline-secondary {
+    border-color: var(--color-gray-400);
+    color: var(--color-gray-700);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--color-gray-100);
+    border-color: var(--color-gray-500);
+    color: var(--color-gray-900);
+}
+
+/* Bootstrap Component Typography Override */
+.alert {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-normal);
+    font-family: inherit;
+}
+
+.alert i {
+    font-size: var(--font-size-16);
+    margin-right: 0.5rem;
+}
+
+/* Accessibility Improvements */
+.visually-hidden {
+    font-size: var(--font-size-12);
+}
+
+/* Navbar Enhancements */
+.dashboard__navbar {
+    background-color: var(--color-primary-700, #0d6efd);
+    box-shadow: 0 2px 4px var(--color-shadow-default);
+}
+
+.dashboard__navbar .navbar-brand {
+    color: var(--color-white) !important;
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Page Header Typography */
+.page-header h2 {
+    color: var(--color-gray-900);
+    margin-bottom: 0.5rem;
+}
+
+.page-header .lead {
+    color: var(--color-gray-600);
+    font-weight: var(--font-weight-normal);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .dashboard__sidebar__filter_card,
+    .dashboard__sidebar__stats_card {
+        margin-bottom: 1rem;
+    }
+
+    .form-select[multiple] {
+        size: 3;
+    }
+}

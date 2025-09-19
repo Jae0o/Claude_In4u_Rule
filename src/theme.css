@@ -54,6 +54,7 @@
   --color-border-default: #d6e3f0;
   --color-shadow-default: rgba(74, 85, 104, 0.15);
   --color-overlay: rgba(255, 255, 255, 0.7);
+  --color-overlay-opaque: rgba(255, 255, 255, 0.95);
 
   /* 6. Interactive States (인터랙션 상태) */
   --color-hover-bg: #f0f4f8;
