@@ -91,11 +91,31 @@ h4, h5, h6 {
 
 /* Navbar Styles */
 .dashboard__navbar {
-    background-color: var(--color-primary-900) !important;
+    background: linear-gradient(135deg, var(--color-primary-700) 0%, var(--color-primary-900) 100%) !important;
+    box-shadow: var(--shadow-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .dashboard__navbar .navbar-brand {
     font-size: var(--font-size-18);
     font-weight: var(--font-weight-semibold);
     font-family: inherit;
+    transition: transform 0.2s ease;
+}
+
+.dashboard__navbar .navbar-brand:hover {
+    transform: translateX(5px);
+}
+
+/* Page Header Improvements */
+.page-header {
+    padding: 1.5rem 0;
+    border-bottom: 2px solid var(--color-gray-100);
+}
+
+/* Global Transitions */
+* {
+    transition-property: background-color, border-color, box-shadow;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
 }

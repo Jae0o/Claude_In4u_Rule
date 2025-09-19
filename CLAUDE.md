@@ -143,5 +143,5 @@ Filters in the sidebar automatically connect to mock data:
 
 - Convention 위반: 발견 즉시 지적하고 올바른 방법을 제안하세요.
 
-- 디자인 참조: Design_Examples 폴더 내 이미지를 UI 디자인 구현 시 필수로 참고하세요.
+- 디자인 참조: Design_Examples 폴더와 Figma_Example 폴더 내 이미지를 UI 디자인 구현 시 필수로 교차 검증 후 참고하세요. (폴더 내 이미지가 없는 경우 서비스 내 디자인을 참조)
 - 작업 계획: 모든 UI 디자인 작업은 변경 계획 수립 → 제안 → 승인 후 작업 진행하세요.

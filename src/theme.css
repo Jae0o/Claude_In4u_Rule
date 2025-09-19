@@ -53,4 +53,27 @@
   --color-border-default: #ebebeb;
   --color-shadow-default: rgba(145, 145, 145, 0.196);
   --color-overlay: rgba(255, 255, 255, 0.6);
+
+  /* 6. Interactive States (인터랙션 상태) */
+  --color-hover-bg: #f8f9fa;
+  --color-active-bg: var(--color-primary-100);
+  --color-selected-bg: var(--color-primary-100);
+  --color-selected-border: var(--color-primary-500);
+  --color-focus-shadow: rgba(114, 156, 229, 0.25);
+
+  /* 7. Filter Specific (필터 전용) */
+  --color-tag-bg: var(--color-primary-100);
+  --color-tag-text: var(--color-primary-900);
+  --color-tag-border: var(--color-primary-300);
+  --color-tag-hover-bg: var(--color-primary-300);
+  --color-tag-remove: var(--color-gray-600);
+  --color-tag-remove-hover: var(--color-error);
+
+  /* 8. Enhanced Shadows (개선된 그림자) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.12);
 }

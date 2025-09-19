@@ -103,9 +103,15 @@
           class="col-md-3"
           style="flex: 0 0 20%; max-width: 20%"
         >
+          <!-- Selected Filters Display -->
+          <div class="dashboard__filter__selected_tags" id="selected-filters">
+            <span class="dashboard__filter__selected_tags_empty">선택된 필터가 없습니다</span>
+            <!-- Tags will be dynamically added here -->
+          </div>
+
           <!-- Filter Panel using Bootstrap 5 Card -->
           <div class="card dashboard__sidebar__filter_card mb-3">
-            <div class="card-header bg-light">
+            <div class="card-header">
               <h5 class="card-title mb-0 d-flex align-items-center">
                 <i class="bi bi-funnel me-2"></i>
                 <span>필터</span>
@@ -113,90 +119,154 @@
             </div>
             <div class="card-body dashboard__sidebar__filter_panel">
 
-              <!-- 달력 연도월 필터 (Bootstrap 5 Floating Label) -->
-              <div class="dashboard__sidebar__filter_group mb-3">
-                <label for="filter_month" class="form-label d-flex align-items-center">
-                  <i class="bi bi-calendar3 me-1 small"></i>
-                  <span>달력 연도월</span>
-                  <span class="badge bg-secondary ms-auto dashboard__filter__badge">다중선택</span>
+              <!-- 달력 연도월 필터 (Dropdown with Checkbox) -->
+              <div class="dashboard__sidebar__filter_group">
+                <label class="form-label">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-calendar3 me-1 small"></i>
+                    <span>달력 연도월</span>
+                  </div>
+                  <span class="badge dashboard__filter__badge">다중선택</span>
                 </label>
-                <select
-                  class="form-select form-select-sm"
-                  multiple
-                  id="filter_month"
-                  data-column="달력_연도_월"
-                  data-type="multi_select"
-                  aria-label="달력 연도월 선택"
-                  size="5"
-                >
-                <option value="2023.01">2023.01</option>
-                <option value="2023.02">2023.02</option>
-                <option value="2023.03">2023.03</option>
-                <option value="2023.04">2023.04</option>
-                <option value="2023.05">2023.05</option>
-                <option value="2023.06">2023.06</option>
-                <option value="2023.07">2023.07</option>
-                <option value="2023.08">2023.08</option>
-                <option value="2023.09">2023.09</option>
-                </select>
-                <div class="form-text dashboard__filter__help_text">Ctrl/Cmd 키를 눌러 다중 선택</div>
-              </div>
-
-              <!-- 유통경로 필터 (Bootstrap 5 Input Group) -->
-              <div class="dashboard__sidebar__filter_group mb-3">
-                <label for="filter_channel" class="form-label d-flex align-items-center">
-                  <i class="bi bi-shop me-1 small"></i>
-                  <span>유통경로</span>
-                  <span class="badge bg-info ms-auto dashboard__filter__badge">단일선택</span>
-                </label>
-                <div class="input-group input-group-sm">
-                  <span class="input-group-text"><i class="bi bi-funnel"></i></span>
-                  <select
-                    class="form-select"
-                    id="filter_channel"
-                    data-column="유통경로"
-                    data-type="select"
-                    aria-label="유통경로 선택"
-                  >
-                <option value="">전체</option>
-                <option value="온라인">온라인</option>
-                <option value="오프라인">오프라인</option>
-                  </select>
+                <div class="dashboard__filter__dropdown" id="month-filter-dropdown">
+                  <button type="button" class="dashboard__filter__dropdown_trigger" data-column="달력_연도_월">
+                    <span>선택하세요</span>
+                    <i class="bi bi-chevron-down"></i>
+                  </button>
+                  <div class="dashboard__filter__dropdown_menu">
+                    <div class="dashboard__filter__options">
+                      <div class="dashboard__filter__option" data-value="2023.01">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>2023.01</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="2023.02">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>2023.02</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="2023.03">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>2023.03</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="2023.04">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>2023.04</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="2023.05">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>2023.05</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="2023.06">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>2023.06</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="2023.07">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>2023.07</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="2023.08">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>2023.08</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="2023.09">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>2023.09</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <!-- 제품군 필터 (Bootstrap 5 with Badge) -->
-              <div class="dashboard__sidebar__filter_group mb-3">
-                <label for="filter_product" class="form-label d-flex align-items-center">
-                  <i class="bi bi-box-seam me-1 small"></i>
-                  <span>제품군</span>
-                  <span class="badge bg-secondary ms-auto dashboard__filter__badge">다중선택</span>
+              <!-- 유통경로 필터 (Toggle Button Group) -->
+              <div class="dashboard__sidebar__filter_group">
+                <label class="form-label">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-shop me-1 small"></i>
+                    <span>유통경로</span>
+                  </div>
+                  <span class="badge dashboard__filter__badge">단일선택</span>
                 </label>
-                <select
-                  class="form-select form-select-sm"
-                  multiple
-                  id="filter_product"
-                  data-column="제품군"
-                  data-type="multi_select"
-                  aria-label="제품군 선택"
-                  size="6"
-                >
-                <option value="전자">전자</option>
-                <option value="의류">의류</option>
-                <option value="식품">식품</option>
-                <option value="스포츠">스포츠</option>
-                <option value="생활용품">생활용품</option>
-                <option value="자동차용품">자동차용품</option>
-                <option value="건강기능식품">건강기능식품</option>
-                <option value="화장품">화장품</option>
-                <option value="도서">도서</option>
-                <option value="기타">기타</option>
-                </select>
-                <div class="form-text dashboard__filter__help_text">Ctrl/Cmd 키를 눌러 다중 선택</div>
+                <div class="dashboard__filter__toggle_group" id="channel-filter" data-column="유통경로">
+                  <button type="button" class="dashboard__filter__toggle_btn active" data-value="">전체</button>
+                  <button type="button" class="dashboard__filter__toggle_btn" data-value="온라인">온라인</button>
+                  <button type="button" class="dashboard__filter__toggle_btn" data-value="오프라인">오프라인</button>
+                </div>
+              </div>
+
+              <!-- 제품군 필터 (Dropdown with Search and Checkbox) -->
+              <div class="dashboard__sidebar__filter_group">
+                <label class="form-label">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-box-seam me-1 small"></i>
+                    <span>제품군</span>
+                  </div>
+                  <span class="badge dashboard__filter__badge">다중선택</span>
+                </label>
+                <div class="dashboard__filter__dropdown" id="product-filter-dropdown">
+                  <button type="button" class="dashboard__filter__dropdown_trigger" data-column="제품군">
+                    <span>선택하세요</span>
+                    <i class="bi bi-chevron-down"></i>
+                  </button>
+                  <div class="dashboard__filter__dropdown_menu">
+                    <div class="dashboard__filter__search">
+                      <input type="text" class="dashboard__filter__search_input" placeholder="검색..." />
+                    </div>
+                    <div class="dashboard__filter__options">
+                      <div class="dashboard__filter__option" data-value="전자">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>전자</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="의류">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>의류</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="식품">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>식품</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="스포츠">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>스포츠</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="생활용품">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>생활용품</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="자동차용품">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>자동차용품</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="건강기능식품">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>건강기능식품</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="화장품">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>화장품</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="도서">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>도서</span>
+                      </div>
+                      <div class="dashboard__filter__option" data-value="기타">
+                        <span class="dashboard__filter__option_checkbox"></span>
+                        <span>기타</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <!-- Filter Action Buttons (Bootstrap 5 Button Group) -->
               <div class="d-grid gap-2">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-sm"
+                  onclick="applyFilters()"
+                  aria-label="필터 적용"
+                >
+                  <i class="bi bi-check-lg me-1"></i>
+                  필터 적용
+                </button>
                 <button
                   type="button"
                   class="btn btn-outline-secondary btn-sm"
@@ -212,7 +282,7 @@
 
           <!-- Statistics Panel using Bootstrap 5 Card & List Group -->
           <div class="card dashboard__sidebar__stats_card">
-            <div class="card-header bg-primary bg-opacity-10">
+            <div class="card-header">
               <h6 class="card-subtitle mb-0 d-flex align-items-center">
                 <i class="bi bi-graph-up me-2"></i>
                 <span>통계 정보</span>
@@ -381,5 +451,8 @@
 
     <!-- Base Dashboard JavaScript -->
     <script src="base-dashboard.js"></script>
+
+    <!-- Enhanced Filter System JavaScript -->
+    <script src="enhanced-filters.js"></script>
   </body>
 </html>
