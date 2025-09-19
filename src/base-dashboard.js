@@ -919,7 +919,8 @@ class MultiChartDashboardController extends DashboardController {
   }
 
   async applyFilters() {
-    const filters = this.collectFilterValues();
+    // enhanced-filters에서 전달된 필터가 있으면 우선 사용, 없으면 기존 방식 사용
+    const filters = this.currentFilters || this.collectFilterValues();
 
     try {
       this.showLoading(true);
@@ -932,14 +933,37 @@ class MultiChartDashboardController extends DashboardController {
         const filteredDatasets = mockData.datasets.map(dataset => {
           let filteredData = dataset.data;
 
-          Object.keys(filters).forEach(column => {
-            const filterValue = filters[column];
+          // 필터 적용 전에 데이터가 있는지 확인
+          if (filteredData.length === 0) {
+            return {
+              ...dataset,
+              data: filteredData
+            };
+          }
+
+          // 필터 키를 실제 데이터 컬럼명으로 매핑
+          const columnMapping = {
+            'months': '달력_연도_월',
+            'channel': '유통경로',
+            'products': '제품군'
+          };
+
+          Object.keys(filters).forEach(filterKey => {
+            const filterValue = filters[filterKey];
+            const columnName = columnMapping[filterKey] || filterKey;
+
+            // 배열의 경우 길이가 0이 아닐 때만, 문자열의 경우 빈 문자열이 아닐 때만 필터 적용
             if (filterValue && filterValue !== '') {
-              if (Array.isArray(filterValue)) {
-                filteredData = filteredData.filter(row => filterValue.includes(row[column]));
-              } else {
-                filteredData = filteredData.filter(row => row[column] === filterValue);
+              // 해당 차트 데이터에 이 컬럼이 존재하는지 확인
+              const sampleRow = filteredData[0];
+              if (sampleRow && sampleRow.hasOwnProperty(columnName)) {
+                if (Array.isArray(filterValue) && filterValue.length > 0) {
+                  filteredData = filteredData.filter(row => filterValue.includes(row[columnName]));
+                } else if (!Array.isArray(filterValue)) {
+                  filteredData = filteredData.filter(row => row[columnName] === filterValue);
+                }
               }
+              // 컬럼이 없으면 필터를 적용하지 않고 원본 데이터 유지
             }
           });
 
@@ -960,13 +984,22 @@ class MultiChartDashboardController extends DashboardController {
         // 단일 차트 처리
         let filteredData = mockData.data;
 
-        Object.keys(filters).forEach(column => {
-          const filterValue = filters[column];
+        // 필터 키를 실제 데이터 컬럼명으로 매핑
+        const columnMapping = {
+          'months': '달력_연도_월',
+          'channel': '유통경로',
+          'products': '제품군'
+        };
+
+        Object.keys(filters).forEach(filterKey => {
+          const filterValue = filters[filterKey];
+          const columnName = columnMapping[filterKey] || filterKey;
+
           if (filterValue && filterValue !== '') {
-            if (Array.isArray(filterValue)) {
-              filteredData = filteredData.filter(row => filterValue.includes(row[column]));
-            } else {
-              filteredData = filteredData.filter(row => row[column] === filterValue);
+            if (Array.isArray(filterValue) && filterValue.length > 0) {
+              filteredData = filteredData.filter(row => filterValue.includes(row[columnName]));
+            } else if (!Array.isArray(filterValue)) {
+              filteredData = filteredData.filter(row => row[columnName] === filterValue);
             }
           }
         });
@@ -1023,6 +1056,24 @@ class MultiChartDashboardController extends DashboardController {
                 `;
       }
     }
+  }
+
+  // enhanced-filters.js와의 연동을 위한 메서드
+  updateFilters(filters) {
+    console.log('Updating filters with:', filters);
+
+    // 현재 컨트롤러의 필터 상태 업데이트
+    this.currentFilters = filters;
+
+    // 기존 applyFilters 메서드 호출하여 차트 업데이트
+    this.applyFilters();
+  }
+
+  // 필터 초기화를 위한 메서드
+  resetFilters() {
+    console.log('Resetting filters');
+    this.currentFilters = {};
+    this.applyFilters();
   }
 }
 

@@ -1,26 +1,7 @@
-/* Base styles for BXG Dashboard */
-
-/* Font Size Variables - Convention 준수 */
-:root {
-  --font-size-12: 0.75rem;     /* 12px - 메타데이터, 보조 텍스트 */
-  --font-size-14: 0.875rem;    /* 14px - 기본 본문 */
-  --font-size-16: 1rem;         /* 16px - 강조 본문 */
-  --font-size-18: 1.125rem;     /* 18px - 섹션 제목 */
-  --font-size-20: 1.25rem;      /* 20px - 페이지 제목 */
-  --font-size-25: 1.5625rem;    /* 25px - 메인 타이틀 */
-}
-
-/* Font Weight Variables - Convention 준수 */
-:root {
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-}
-
 /* Global Font Settings - Pretendard 전체 적용 */
 body {
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-normal);
   line-height: 1.5;
@@ -47,7 +28,9 @@ h3 {
   line-height: 1.4;
 }
 
-h4, h5, h6 {
+h4,
+h5,
+h6 {
   font-size: var(--font-size-16);
   font-weight: var(--font-weight-medium);
   line-height: 1.4;
@@ -95,11 +78,13 @@ h4, h5, h6 {
   border-color: var(--color-primary-700) !important;
 }
 
-.btn-primary:focus, .btn-primary.focus {
+.btn-primary:focus,
+.btn-primary.focus {
   box-shadow: 0 0 0 0.2rem var(--color-focus-shadow) !important;
 }
 
-.btn-primary:active, .btn-primary.active {
+.btn-primary:active,
+.btn-primary.active {
   background-color: var(--color-primary-900) !important;
   border-color: var(--color-primary-900) !important;
 }
@@ -123,31 +108,35 @@ h4, h5, h6 {
 
 /* Navbar Styles */
 .dashboard__navbar {
-    background: linear-gradient(135deg, var(--color-primary-700) 0%, var(--color-primary-900) 100%) !important;
-    box-shadow: var(--shadow-md);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-700) 0%,
+    var(--color-primary-900) 100%
+  ) !important;
+  box-shadow: var(--shadow-md);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .dashboard__navbar .navbar-brand {
-    font-size: var(--font-size-18);
-    font-weight: var(--font-weight-semibold);
-    font-family: inherit;
-    transition: transform 0.2s ease;
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-semibold);
+  font-family: inherit;
+  transition: transform 0.2s ease;
 }
 
 .dashboard__navbar .navbar-brand:hover {
-    transform: translateX(5px);
+  transform: translateX(5px);
 }
 
 /* Page Header Improvements */
 .page-header {
-    padding: 1.5rem 0;
-    border-bottom: 2px solid var(--color-gray-100);
+  padding: 1.5rem 0;
+  border-bottom: 2px solid var(--color-gray-100);
 }
 
 /* Global Transitions */
 * {
-    transition-property: background-color, border-color, box-shadow;
-    transition-duration: 0.2s;
-    transition-timing-function: ease-in-out;
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
 }
