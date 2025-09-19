@@ -46,6 +46,7 @@ The dashboard system supports both single and multi-chart layouts:
 - **Responsive Design**: Mobile-first approach with collapsible layouts
 
 JavaScript controllers:
+
 - `DashboardController` - Single chart dashboards
 - `MultiChartDashboardController` - Multi-chart layouts with grid system
 
@@ -56,6 +57,7 @@ Files use Jinja2-style template syntax (`{% %}`, `{{ }}`) suggesting this may in
 ### JavaScript Dependencies
 
 All external dependencies are loaded via CDN:
+
 - Bootstrap 5.3.0
 - Plotly.js 3.1.0
 - Crossfilter 1.5.4
@@ -84,10 +86,10 @@ All external dependencies are loaded via CDN:
 ```
 
 - **(매우 중요) 작업 전 필수**: .claude/Convention 폴더의 관련 규칙을 확인하고 적용하세요.
-- **(매우 중요) 작업 전 필수 주의 사항 1**: CSS 스타일 변수 수정및 추가에 대해서는 반드시 제안 해야하고 승인했을 경우에만 변경하세요.
-- **(매우 중요) Convention 위반**: 발견 즉시 지적하고 올바른 방법을 제안하세요.
+- **(매우 중요) 작업 전 필수 주의 사항 1**: 매번 CSS 스타일 변수 수정및 추가에 대해서는 반드시 제안 해야하고 승인했을 경우에만 변경하세요.
+- **(매우 중요) Convention 위반**: 매번 발견 즉시 지적하고 올바른 방법을 제안하세요.
 
-- 작업 계획: 모든 UI 디자인 작업은 변경 계획 수립 → 제안 → 승인 후 작업 진행하세요.
+- 작업 계획: 매번 모든 UI 디자인 작업은 변경 계획 수립 → 제안 → 승인 후 작업 진행하세요.
 
 - UI 구현 우선순위: 1순위 기존 구현 컴포넌트 재사용 확인 → 2순위 Bootstrap5 사용을 검토하세요.
 

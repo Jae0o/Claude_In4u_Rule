@@ -34,11 +34,13 @@
   --color-primary-900: #2a5f99;
 }
 
-/* 기본 폰트 적용 */
+/* 기본 폰트 및 배경색 적용 */
 body {
   font-family: var(--font-family-primary);
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-normal);
+  background-color: var(--color-bg-main);
+  color: var(--color-black);
 }
 
 /* 제목 폰트 적용 */
@@ -79,8 +81,105 @@ h4, h5, h6 {
   font-weight: var(--font-weight-normal);
 }
 
-/* 네비게이션 폰트 적용 */
+/* 네비게이션 폰트 및 색상 적용 */
 .navbar-brand, .nav-link {
   font-family: var(--font-family-primary);
   font-weight: var(--font-weight-medium);
+  color: var(--color-white) !important;
+}
+
+/* 프라이머리 색상 기반 UI 요소들 */
+.btn-primary {
+  background-color: var(--color-primary-500);
+  border-color: var(--color-primary-500);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-700);
+  border-color: var(--color-primary-700);
+}
+
+.btn-primary:focus, .btn-primary:active {
+  background-color: var(--color-primary-900);
+  border-color: var(--color-primary-900);
+  box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+}
+
+.btn-outline-primary {
+  color: var(--color-primary-500);
+  border-color: var(--color-primary-500);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-primary-500);
+  border-color: var(--color-primary-500);
+  color: var(--color-white);
+}
+
+/* 링크 색상 */
+a {
+  color: var(--color-primary-500);
+}
+
+a:hover {
+  color: var(--color-primary-700);
+}
+
+/* 폼 요소 포커스 색상 */
+.form-control:focus, .form-select:focus {
+  border-color: var(--color-primary-300);
+  box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+}
+
+/* 카드 및 박스 그림자 개선 */
+.card, .chart-container, .chart-item {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-gray-200);
+}
+
+.card:hover, .chart-container:hover, .chart-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* 접근성 및 사용성 개선 */
+/* 포커스 표시 개선 */
+button:focus, .btn:focus, input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* 텍스트 대비 개선 */
+.text-muted, .text-secondary {
+  color: var(--color-gray-600) !important;
+}
+
+/* Alert 컴포넌트 색상 개선 */
+.alert-primary {
+  background-color: var(--color-primary-100);
+  border-color: var(--color-primary-300);
+  color: var(--color-primary-900);
+}
+
+/* 테이블 및 리스트 개선 */
+.table th {
+  background-color: var(--color-gray-100);
+  color: var(--color-black);
+  font-weight: var(--font-weight-semibold);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: var(--color-gray-50);
+}
+
+/* 네비게이션 개선 */
+.nav-tabs .nav-link.active {
+  background-color: var(--color-white);
+  border-color: var(--color-primary-300);
+  color: var(--color-primary-700);
+}
+
+.nav-tabs .nav-link:hover {
+  border-color: var(--color-primary-100);
+  color: var(--color-primary-500);
 }
