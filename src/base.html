@@ -76,7 +76,7 @@
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="#">
           <i class="bi bi-bar-chart me-2"></i>
-          <span class="h5 mb-0">BXG 분석 대시보드</span>
+          <span class="dashboard__navbar__title mb-0">BXG 분석 대시보드</span>
         </a>
         <!-- Optional: Navigation items can be added here -->
         <div class="navbar-nav ms-auto">
@@ -86,14 +86,14 @@
     </nav>
 
     <main class="container-fluid mt-3">
-      <!-- Page Header with Bootstrap 5 Typography -->
+      <!-- Page Header -->
       <div class="row">
         <div class="col-12">
           <div class="page-header mb-3">
-            <h2 class="display-6 fw-semibold">BXG 데이터 분석 대시보드</h2>
-            <p class="text-muted lead fs-6">대시보드를 통해 데이터를 분석하세요</p>
+            <h2 class="dashboard__header__title">BXG 데이터 분석 대시보드</h2>
+            <p class="dashboard__header__subtitle text-muted">대시보드를 통해 데이터를 분석하세요</p>
           </div>
-          <hr class="border-secondary-subtle" />
+          <hr />
         </div>
       </div>
 
@@ -118,7 +118,7 @@
                 <label for="filter_month" class="form-label d-flex align-items-center">
                   <i class="bi bi-calendar3 me-1 small"></i>
                   <span>달력 연도월</span>
-                  <span class="badge bg-secondary ms-auto">다중선택</span>
+                  <span class="badge bg-secondary ms-auto dashboard__filter__badge">다중선택</span>
                 </label>
                 <select
                   class="form-select form-select-sm"
@@ -139,7 +139,7 @@
                 <option value="2023.08">2023.08</option>
                 <option value="2023.09">2023.09</option>
                 </select>
-                <div class="form-text small">Ctrl/Cmd 키를 눌러 다중 선택</div>
+                <div class="form-text dashboard__filter__help_text">Ctrl/Cmd 키를 눌러 다중 선택</div>
               </div>
 
               <!-- 유통경로 필터 (Bootstrap 5 Input Group) -->
@@ -147,7 +147,7 @@
                 <label for="filter_channel" class="form-label d-flex align-items-center">
                   <i class="bi bi-shop me-1 small"></i>
                   <span>유통경로</span>
-                  <span class="badge bg-info ms-auto">단일선택</span>
+                  <span class="badge bg-info ms-auto dashboard__filter__badge">단일선택</span>
                 </label>
                 <div class="input-group input-group-sm">
                   <span class="input-group-text"><i class="bi bi-funnel"></i></span>
@@ -170,7 +170,7 @@
                 <label for="filter_product" class="form-label d-flex align-items-center">
                   <i class="bi bi-box-seam me-1 small"></i>
                   <span>제품군</span>
-                  <span class="badge bg-secondary ms-auto">다중선택</span>
+                  <span class="badge bg-secondary ms-auto dashboard__filter__badge">다중선택</span>
                 </label>
                 <select
                   class="form-select form-select-sm"
@@ -192,7 +192,7 @@
                 <option value="도서">도서</option>
                 <option value="기타">기타</option>
                 </select>
-                <div class="form-text small">Ctrl/Cmd 키를 눌러 다중 선택</div>
+                <div class="form-text dashboard__filter__help_text">Ctrl/Cmd 키를 눌러 다중 선택</div>
               </div>
 
               <!-- Filter Action Buttons (Bootstrap 5 Button Group) -->
@@ -263,13 +263,13 @@
                 >
                   <div class="text-center">
                     <div
-                      class="spinner-border text-primary mb-2"
+                      class="spinner-border text-primary dashboard__loading__spinner mb-2"
                       role="status"
                       aria-label="차트 로딩 중"
                     >
                       <span class="visually-hidden">차트 1 로딩 중...</span>
                     </div>
-                    <p class="text-muted small">차트 1 로딩 중...</p>
+                    <p class="dashboard__loading__text text-muted">차트 1 로딩 중...</p>
                   </div>
                 </div>
                 <div
@@ -297,13 +297,13 @@
                 >
                   <div class="text-center">
                     <div
-                      class="spinner-border text-primary mb-2"
+                      class="spinner-border text-primary dashboard__loading__spinner mb-2"
                       role="status"
                       aria-label="차트 로딩 중"
                     >
                       <span class="visually-hidden">차트 2 로딩 중...</span>
                     </div>
-                    <p class="text-muted small">차트 2 로딩 중...</p>
+                    <p class="dashboard__loading__text text-muted">차트 2 로딩 중...</p>
                   </div>
                 </div>
                 <div
@@ -331,13 +331,13 @@
                 >
                   <div class="text-center">
                     <div
-                      class="spinner-border text-primary mb-2"
+                      class="spinner-border text-primary dashboard__loading__spinner mb-2"
                       role="status"
                       aria-label="차트 로딩 중"
                     >
                       <span class="visually-hidden">차트 3 로딩 중...</span>
                     </div>
-                    <p class="text-muted small">차트 3 로딩 중...</p>
+                    <p class="dashboard__loading__text text-muted">차트 3 로딩 중...</p>
                   </div>
                 </div>
                 <div
@@ -348,36 +348,29 @@
             </div>
           </div>
 
-          <!-- Single Chart Layout with Bootstrap 5 Card -->
-          <div class="card dashboard__content__single_chart_card">
-            <div class="card-body position-relative">
+          <!-- Single Chart Layout (Original Structure) -->
+          <div class="dashboard__content__chart_container">
+            <div
+              class="dashboard__content__loading"
+              id="loading"
+            >
               <div
-                class="dashboard__content__loading position-absolute top-50 start-50 translate-middle"
-                id="loading"
-                style="z-index: 10;"
+                class="spinner-border text-primary dashboard__loading__spinner--large"
+                role="status"
+                aria-label="데이터 로딩 중"
               >
-                <div class="text-center">
-                  <div
-                    class="spinner-border text-primary mb-3"
-                    style="width: 3rem; height: 3rem;"
-                    role="status"
-                    aria-label="데이터 로딩 중"
-                  >
-                    <span class="visually-hidden">로딩 중...</span>
-                  </div>
-                  <p class="text-muted">데이터를 불러오는 중입니다...</p>
-                  <div class="progress" style="width: 200px;">
-                    <div
-                      class="progress-bar progress-bar-striped progress-bar-animated"
-                      role="progressbar"
-                      style="width: 100%"
-                      aria-label="로딩 진행 중"
-                    ></div>
-                  </div>
-                </div>
+                <span class="visually-hidden">로딩 중...</span>
               </div>
-              <div id="chart"></div>
+              <p class="dashboard__loading__text">데이터를 불러오는 중입니다...</p>
+              <div class="progress dashboard__loading__progress">
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated"
+                  role="progressbar"
+                  aria-label="로딩 진행 중"
+                ></div>
+              </div>
             </div>
+            <div id="chart"></div>
           </div>
         </div>
       </div>
