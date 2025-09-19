@@ -121,6 +121,8 @@ Filters in the sidebar automatically connect to mock data:
     ┗ 📜ClassNameConvention.md
     ┗ 📜StyleFontVariableConvention.md
     ┗ 📜StyleColorVariableConvention.md
+    ┗ 📜Bootstrap5ComponentsConvention.md
+    ┗ 📜Bootstrap5InputConvention.md
 ```
 
 - ClassNameConvention.md의 네이밍 규칙을 모든 CSS 클래스명에 적용
@@ -128,3 +130,8 @@ Filters in the sidebar automatically connect to mock data:
 - 모든 CSS 변수와 폰트 관련 스타일은 StyleFontVariableConvention.md의 가이드라인을 준수해야 합니다.
 - 모든 CSS 변수와 색상 이름은 StyleColorVariableConvention.md의 명명 규칙을 따르세요.
 - 모든 CSS 변수와 색상 관련 스타일은 StyleColorVariableConvention.md의 가이드라인을 준수해야 합니다.
+
+- UI 디자인 구현 과정에서 재사용 성을 높이기 위해 구현되어진 Component를 우선적으로 확인한 후 Bootstrap5를 사용하세요.
+- Bootstrap5를 사용하는 경우 사용 계획을 세우고 제안한 후 사용하세요.
+- 모든 Bootstrap 5 컴포넌트는 Bootstrap5ComponentsConvention.md의 규칙을 준수해야 합니다.
+- 모든 Bootstrap 5 입력 요소는 Bootstrap5InputConvention.md의 규칙을 준수해야 합니다.

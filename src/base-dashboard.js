@@ -527,8 +527,20 @@ class DashboardController {
   }
 
   updateStats(filteredCount, totalCount) {
-    document.getElementById("filtered-count").textContent = filteredCount.toLocaleString();
-    document.getElementById("total-count").textContent = totalCount.toLocaleString();
+    // Bootstrap 5 Badge 컴포넌트 업데이트
+    const totalBadge = document.getElementById("total-count");
+    const filteredBadge = document.getElementById("filtered-count");
+
+    // 숫자 업데이트 및 포맷팅
+    totalBadge.textContent = totalCount.toLocaleString() + "행";
+    filteredBadge.textContent = filteredCount.toLocaleString() + "행";
+
+    // 필터링 상태에 따른 Badge 색상 변경
+    if (filteredCount < totalCount) {
+      filteredBadge.className = "badge bg-warning rounded-pill";
+    } else {
+      filteredBadge.className = "badge bg-success rounded-pill";
+    }
   }
 
   showLoading(show) {

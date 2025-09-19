@@ -71,21 +71,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter2/1.5.4/crossfilter.min.js"></script>
   </head>
   <body>
-    <nav class="dashboard__navbar navbar-dark">
+    <!-- Bootstrap 5 Navbar Component -->
+    <nav class="navbar navbar-dark dashboard__navbar" aria-label="Main navigation">
       <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">
-          <i class="bi bi-bar-chart"></i> BXG 분석 대시보드
-        </span>
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <i class="bi bi-bar-chart me-2"></i>
+          <span class="h5 mb-0">BXG 분석 대시보드</span>
+        </a>
+        <!-- Optional: Navigation items can be added here -->
+        <div class="navbar-nav ms-auto">
+          <!-- Future navigation items -->
+        </div>
       </div>
     </nav>
 
     <main class="container-fluid mt-3">
+      <!-- Page Header with Bootstrap 5 Typography -->
       <div class="row">
-        <!-- 제목 및 설명 -->
         <div class="col-12">
-          <h2>BXG 데이터 분석 대시보드</h2>
-          <p class="text-muted">대시보드를 통해 데이터를 분석하세요</p>
-          <hr />
+          <div class="page-header mb-3">
+            <h2 class="display-6 fw-semibold">BXG 데이터 분석 대시보드</h2>
+            <p class="text-muted lead fs-6">대시보드를 통해 데이터를 분석하세요</p>
+          </div>
+          <hr class="border-secondary-subtle" />
         </div>
       </div>
 
@@ -95,19 +103,32 @@
           class="col-md-3"
           style="flex: 0 0 20%; max-width: 20%"
         >
-          <div class="dashboard__sidebar__filter_panel">
-            <h5><i class="bi bi-funnel"></i> 필터</h5>
+          <!-- Filter Panel using Bootstrap 5 Card -->
+          <div class="card dashboard__sidebar__filter_card mb-3">
+            <div class="card-header bg-light">
+              <h5 class="card-title mb-0 d-flex align-items-center">
+                <i class="bi bi-funnel me-2"></i>
+                <span>필터</span>
+              </h5>
+            </div>
+            <div class="card-body dashboard__sidebar__filter_panel">
 
-            <!-- 달력 연도월 필터 -->
-            <div class="dashboard__sidebar__filter_group">
-              <label class="form-label">달력 연도월</label>
-              <select
-                class="form-select form-select-sm"
-                multiple
-                id="filter_month"
-                data-column="달력_연도_월"
-                data-type="multi_select"
-              >
+              <!-- 달력 연도월 필터 (Bootstrap 5 Floating Label) -->
+              <div class="dashboard__sidebar__filter_group mb-3">
+                <label for="filter_month" class="form-label d-flex align-items-center">
+                  <i class="bi bi-calendar3 me-1 small"></i>
+                  <span>달력 연도월</span>
+                  <span class="badge bg-secondary ms-auto">다중선택</span>
+                </label>
+                <select
+                  class="form-select form-select-sm"
+                  multiple
+                  id="filter_month"
+                  data-column="달력_연도_월"
+                  data-type="multi_select"
+                  aria-label="달력 연도월 선택"
+                  size="5"
+                >
                 <option value="2023.01">2023.01</option>
                 <option value="2023.02">2023.02</option>
                 <option value="2023.03">2023.03</option>
@@ -117,34 +138,49 @@
                 <option value="2023.07">2023.07</option>
                 <option value="2023.08">2023.08</option>
                 <option value="2023.09">2023.09</option>
-              </select>
-            </div>
+                </select>
+                <div class="form-text small">Ctrl/Cmd 키를 눌러 다중 선택</div>
+              </div>
 
-            <!-- 유통경로 필터 -->
-            <div class="dashboard__sidebar__filter_group">
-              <label class="form-label">유통경로</label>
-              <select
-                class="form-select form-select-sm"
-                id="filter_channel"
-                data-column="유통경로"
-                data-type="select"
-              >
+              <!-- 유통경로 필터 (Bootstrap 5 Input Group) -->
+              <div class="dashboard__sidebar__filter_group mb-3">
+                <label for="filter_channel" class="form-label d-flex align-items-center">
+                  <i class="bi bi-shop me-1 small"></i>
+                  <span>유통경로</span>
+                  <span class="badge bg-info ms-auto">단일선택</span>
+                </label>
+                <div class="input-group input-group-sm">
+                  <span class="input-group-text"><i class="bi bi-funnel"></i></span>
+                  <select
+                    class="form-select"
+                    id="filter_channel"
+                    data-column="유통경로"
+                    data-type="select"
+                    aria-label="유통경로 선택"
+                  >
                 <option value="">전체</option>
                 <option value="온라인">온라인</option>
                 <option value="오프라인">오프라인</option>
-              </select>
-            </div>
+                  </select>
+                </div>
+              </div>
 
-            <!-- 제품군 필터 -->
-            <div class="dashboard__sidebar__filter_group">
-              <label class="form-label">제품군</label>
-              <select
-                class="form-select form-select-sm"
-                multiple
-                id="filter_product"
-                data-column="제품군"
-                data-type="multi_select"
-              >
+              <!-- 제품군 필터 (Bootstrap 5 with Badge) -->
+              <div class="dashboard__sidebar__filter_group mb-3">
+                <label for="filter_product" class="form-label d-flex align-items-center">
+                  <i class="bi bi-box-seam me-1 small"></i>
+                  <span>제품군</span>
+                  <span class="badge bg-secondary ms-auto">다중선택</span>
+                </label>
+                <select
+                  class="form-select form-select-sm"
+                  multiple
+                  id="filter_product"
+                  data-column="제품군"
+                  data-type="multi_select"
+                  aria-label="제품군 선택"
+                  size="6"
+                >
                 <option value="전자">전자</option>
                 <option value="의류">의류</option>
                 <option value="식품">식품</option>
@@ -155,24 +191,44 @@
                 <option value="화장품">화장품</option>
                 <option value="도서">도서</option>
                 <option value="기타">기타</option>
-              </select>
-            </div>
+                </select>
+                <div class="form-text small">Ctrl/Cmd 키를 눌러 다중 선택</div>
+              </div>
 
-            <button
-              type="button"
-              class="btn btn-secondary btn-sm w-100"
-              onclick="resetFilters()"
-            >
-              <i class="bi bi-arrow-clockwise"></i> 필터 초기화
-            </button>
+              <!-- Filter Action Buttons (Bootstrap 5 Button Group) -->
+              <div class="d-grid gap-2">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-sm"
+                  onclick="resetFilters()"
+                  aria-label="모든 필터 초기화"
+                >
+                  <i class="bi bi-arrow-clockwise me-1"></i>
+                  필터 초기화
+                </button>
+              </div>
+            </div>
           </div>
 
-          <!-- 통계 패널 -->
-          <div class="dashboard__sidebar__stats_panel">
-            <h6><i class="bi bi-graph-up"></i> 통계 정보</h6>
-            <div id="stats-content">
-              <div>총 데이터: <span id="total-count">0</span>행</div>
-              <div>필터링된 데이터: <span id="filtered-count">0</span>행</div>
+          <!-- Statistics Panel using Bootstrap 5 Card & List Group -->
+          <div class="card dashboard__sidebar__stats_card">
+            <div class="card-header bg-primary bg-opacity-10">
+              <h6 class="card-subtitle mb-0 d-flex align-items-center">
+                <i class="bi bi-graph-up me-2"></i>
+                <span>통계 정보</span>
+              </h6>
+            </div>
+            <div class="card-body p-0">
+              <ul class="list-group list-group-flush" id="stats-content">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <span class="text-muted">총 데이터</span>
+                  <span class="badge bg-primary rounded-pill" id="total-count">0</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <span class="text-muted">필터링된 데이터</span>
+                  <span class="badge bg-success rounded-pill" id="filtered-count">0</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -182,104 +238,146 @@
           class="col-md-9"
           style="flex: 0 0 80%; max-width: 80%"
         >
-          <!-- 다중 차트 레이아웃 -->
+          <!-- Multi-Chart Layout with Bootstrap 5 Card Components -->
           <div
             class="dashboard__content__multi_chart_container"
             data-chart-count="1"
             style="display: none"
           >
+            <!-- Chart 1 Card -->
             <div
-              class="dashboard__content__chart_container dashboard__content__chart_item"
+              class="card dashboard__content__chart_card dashboard__content__chart_item"
               data-chart-index="0"
             >
-              <div class="dashboard__content__chart_header">
-                <h6>Chart 1</h6>
+              <div class="card-header dashboard__content__chart_header">
+                <h6 class="card-title mb-0">
+                  <i class="bi bi-bar-chart-line me-1"></i>
+                  Chart 1
+                </h6>
               </div>
-              <div
-                class="dashboard__content__loading chart-loading"
-                id="loading-0"
-                style="display: none"
-              >
+              <div class="card-body position-relative">
                 <div
-                  class="spinner-border text-primary"
-                  role="status"
+                  class="dashboard__content__loading chart-loading position-absolute top-50 start-50 translate-middle"
+                  id="loading-0"
+                  style="display: none; z-index: 10;"
                 >
-                  <span class="visually-hidden">차트 1 로딩 중...</span>
+                  <div class="text-center">
+                    <div
+                      class="spinner-border text-primary mb-2"
+                      role="status"
+                      aria-label="차트 로딩 중"
+                    >
+                      <span class="visually-hidden">차트 1 로딩 중...</span>
+                    </div>
+                    <p class="text-muted small">차트 1 로딩 중...</p>
+                  </div>
                 </div>
-                <p>차트 1 로딩 중...</p>
+                <div
+                  id="chart-0"
+                  class="dashboard__content__chart_plot"
+                ></div>
               </div>
-              <div
-                id="chart-0"
-                class="dashboard__content__chart_plot"
-              ></div>
             </div>
+            <!-- Chart 2 Card -->
             <div
-              class="dashboard__content__chart_container dashboard__content__chart_item"
+              class="card dashboard__content__chart_card dashboard__content__chart_item"
               data-chart-index="1"
             >
-              <div class="dashboard__content__chart_header">
-                <h6>Chart 2</h6>
+              <div class="card-header dashboard__content__chart_header">
+                <h6 class="card-title mb-0">
+                  <i class="bi bi-bar-chart-line me-1"></i>
+                  Chart 2
+                </h6>
               </div>
-              <div
-                class="dashboard__content__loading chart-loading"
-                id="loading-1"
-                style="display: none"
-              >
+              <div class="card-body position-relative">
                 <div
-                  class="spinner-border text-primary"
-                  role="status"
+                  class="dashboard__content__loading chart-loading position-absolute top-50 start-50 translate-middle"
+                  id="loading-1"
+                  style="display: none; z-index: 10;"
                 >
-                  <span class="visually-hidden">차트 2 로딩 중...</span>
+                  <div class="text-center">
+                    <div
+                      class="spinner-border text-primary mb-2"
+                      role="status"
+                      aria-label="차트 로딩 중"
+                    >
+                      <span class="visually-hidden">차트 2 로딩 중...</span>
+                    </div>
+                    <p class="text-muted small">차트 2 로딩 중...</p>
+                  </div>
                 </div>
-                <p>차트 2 로딩 중...</p>
+                <div
+                  id="chart-1"
+                  class="dashboard__content__chart_plot"
+                ></div>
               </div>
-              <div
-                id="chart-1"
-                class="dashboard__content__chart_plot"
-              ></div>
             </div>
+            <!-- Chart 3 Card -->
             <div
-              class="dashboard__content__chart_container dashboard__content__chart_item"
+              class="card dashboard__content__chart_card dashboard__content__chart_item"
               data-chart-index="2"
             >
-              <div class="dashboard__content__chart_header">
-                <h6>Chart 3</h6>
+              <div class="card-header dashboard__content__chart_header">
+                <h6 class="card-title mb-0">
+                  <i class="bi bi-bar-chart-line me-1"></i>
+                  Chart 3
+                </h6>
               </div>
-              <div
-                class="dashboard__content__loading chart-loading"
-                id="loading-2"
-                style="display: none"
-              >
+              <div class="card-body position-relative">
                 <div
-                  class="spinner-border text-primary"
-                  role="status"
+                  class="dashboard__content__loading chart-loading position-absolute top-50 start-50 translate-middle"
+                  id="loading-2"
+                  style="display: none; z-index: 10;"
                 >
-                  <span class="visually-hidden">차트 3 로딩 중...</span>
+                  <div class="text-center">
+                    <div
+                      class="spinner-border text-primary mb-2"
+                      role="status"
+                      aria-label="차트 로딩 중"
+                    >
+                      <span class="visually-hidden">차트 3 로딩 중...</span>
+                    </div>
+                    <p class="text-muted small">차트 3 로딩 중...</p>
+                  </div>
                 </div>
-                <p>차트 3 로딩 중...</p>
+                <div
+                  id="chart-2"
+                  class="dashboard__content__chart_plot"
+                ></div>
               </div>
-              <div
-                id="chart-2"
-                class="dashboard__content__chart_plot"
-              ></div>
             </div>
           </div>
 
-          <!-- 기존 단일 차트 레이아웃 -->
-          <div class="dashboard__content__chart_container">
-            <div
-              class="dashboard__content__loading"
-              id="loading"
-            >
+          <!-- Single Chart Layout with Bootstrap 5 Card -->
+          <div class="card dashboard__content__single_chart_card">
+            <div class="card-body position-relative">
               <div
-                class="spinner-border text-primary"
-                role="status"
+                class="dashboard__content__loading position-absolute top-50 start-50 translate-middle"
+                id="loading"
+                style="z-index: 10;"
               >
-                <span class="visually-hidden">로딩 중...</span>
+                <div class="text-center">
+                  <div
+                    class="spinner-border text-primary mb-3"
+                    style="width: 3rem; height: 3rem;"
+                    role="status"
+                    aria-label="데이터 로딩 중"
+                  >
+                    <span class="visually-hidden">로딩 중...</span>
+                  </div>
+                  <p class="text-muted">데이터를 불러오는 중입니다...</p>
+                  <div class="progress" style="width: 200px;">
+                    <div
+                      class="progress-bar progress-bar-striped progress-bar-animated"
+                      role="progressbar"
+                      style="width: 100%"
+                      aria-label="로딩 진행 중"
+                    ></div>
+                  </div>
+                </div>
               </div>
-              <p>데이터를 불러오는 중입니다...</p>
+              <div id="chart"></div>
             </div>
-            <div id="chart"></div>
           </div>
         </div>
       </div>
