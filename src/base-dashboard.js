@@ -1043,6 +1043,120 @@ function resetFilters() {
   }
 }
 
+// 새로고침 기능
+function refreshDashboard() {
+  try {
+    console.log("Dashboard refresh started");
+
+    if (window.dashboardController) {
+      // Show loading state for all charts
+      const loadingElements = document.querySelectorAll('.dashboard__chart__loading');
+      loadingElements.forEach(element => {
+        element.style.display = 'block';
+      });
+
+      // Reset filters first
+      resetFilters();
+
+      // Reload data with slight delay for better UX
+      setTimeout(() => {
+        window.dashboardController.loadInitialData().then(() => {
+          console.log("Dashboard refreshed successfully");
+        }).catch(error => {
+          console.error("Dashboard refresh failed:", error);
+          alert('대시보드 새로고침 중 오류가 발생했습니다.');
+        });
+      }, 300);
+    } else {
+      // If no controller, reload the page
+      console.log("No dashboard controller found, reloading page");
+      location.reload();
+    }
+  } catch (error) {
+    console.error("Dashboard refresh failed:", error);
+    alert('대시보드 새로고침 중 오류가 발생했습니다.');
+  }
+}
+
+// 개별 차트 내보내기 기능
+function exportChart(chartIndex) {
+  try {
+    const chartId = `chart-${chartIndex}`;
+    const chartElement = document.getElementById(chartId);
+
+    if (!chartElement) {
+      alert('차트를 찾을 수 없습니다.');
+      return;
+    }
+
+    // Plotly downloadImage API 사용
+    Plotly.downloadImage(chartId, {
+      format: 'png',
+      width: 1200,
+      height: 600,
+      filename: `chart-${chartIndex + 1}-${new Date().toISOString().slice(0, 10)}`
+    }).then(() => {
+      console.log(`Chart ${chartIndex + 1} exported successfully`);
+    }).catch(error => {
+      console.error(`Chart ${chartIndex + 1} export failed:`, error);
+      alert('차트 내보내기 중 오류가 발생했습니다.');
+    });
+  } catch (error) {
+    console.error(`Chart ${chartIndex + 1} export failed:`, error);
+    alert('차트 내보내기 중 오류가 발생했습니다.');
+  }
+}
+
+// 전체 데이터 내보내기 기능
+function exportAllData() {
+  try {
+    if (!window.dashboardController) {
+      alert('대시보드 데이터를 찾을 수 없습니다.');
+      return;
+    }
+
+    const controller = window.dashboardController;
+    let exportData = {};
+
+    if (controller.chartData) {
+      // Multi-chart data
+      exportData = {
+        type: 'multi-chart',
+        timestamp: new Date().toISOString(),
+        charts: controller.chartData
+      };
+    } else if (controller.rawData) {
+      // Single chart data
+      exportData = {
+        type: 'single-chart',
+        timestamp: new Date().toISOString(),
+        data: controller.rawData
+      };
+    } else {
+      alert('내보낼 데이터가 없습니다.');
+      return;
+    }
+
+    // Create and download JSON file
+    const dataStr = JSON.stringify(exportData, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(dataBlob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `dashboard-data-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    console.log('Dashboard data exported successfully');
+  } catch (error) {
+    console.error('Data export failed:', error);
+    alert('데이터 내보내기 중 오류가 발생했습니다.');
+  }
+}
+
 // 페이지 로드 시 대시보드 초기화
 document.addEventListener("DOMContentLoaded", function () {
   try {

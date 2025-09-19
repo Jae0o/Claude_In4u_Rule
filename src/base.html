@@ -91,10 +91,10 @@
               <p class="text-muted mb-0">실시간 비즈니스 인사이트와 데이터 시각화</p>
             </div>
             <div class="d-flex gap-2">
-              <button class="btn btn-outline-primary btn-sm bxg__rounded-md">
+              <button class="btn btn-outline-primary btn-sm bxg__rounded-md" onclick="exportAllData()">
                 <i class="bi bi-download"></i> 내보내기
               </button>
-              <button class="btn btn-primary btn-sm bxg__rounded-md">
+              <button class="btn btn-primary btn-sm bxg__rounded-md" onclick="refreshDashboard()">
                 <i class="bi bi-arrow-clockwise"></i> 새로고침
               </button>
             </div>
@@ -237,12 +237,11 @@
                     <h6 class="mb-0 fw-semibold">Chart 1</h6>
                   </div>
                   <div class="dropdown">
-                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="bi bi-three-dots"></i>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#"><i class="bi bi-download me-2"></i>내보내기</a></li>
-                      <li><a class="dropdown-item" href="#"><i class="bi bi-fullscreen me-2"></i>전체화면</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="exportChart(0)"><i class="bi bi-download me-2"></i>내보내기</a></li>
                     </ul>
                   </div>
                 </div>
@@ -278,12 +277,11 @@
                     <h6 class="mb-0 fw-semibold">Chart 2</h6>
                   </div>
                   <div class="dropdown">
-                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="bi bi-three-dots"></i>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#"><i class="bi bi-download me-2"></i>내보내기</a></li>
-                      <li><a class="dropdown-item" href="#"><i class="bi bi-fullscreen me-2"></i>전체화면</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="exportChart(1)"><i class="bi bi-download me-2"></i>내보내기</a></li>
                     </ul>
                   </div>
                 </div>
@@ -319,12 +317,11 @@
                     <h6 class="mb-0 fw-semibold">Chart 3</h6>
                   </div>
                   <div class="dropdown">
-                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                       <i class="bi bi-three-dots"></i>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#"><i class="bi bi-download me-2"></i>내보내기</a></li>
-                      <li><a class="dropdown-item" href="#"><i class="bi bi-fullscreen me-2"></i>전체화면</a></li>
+                      <li><a class="dropdown-item" href="#" onclick="exportChart(2)"><i class="bi bi-download me-2"></i>내보내기</a></li>
                     </ul>
                   </div>
                 </div>

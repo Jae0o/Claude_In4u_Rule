@@ -20,7 +20,8 @@
       "mcp__playwright__browser_close",
       "WebFetch(domain:www.bxgdocs.com)",
       "mcp__serena__find_symbol",
-      "mcp__serena__search_for_pattern"
+      "mcp__serena__search_for_pattern",
+      "mcp__playwright__browser_take_screenshot"
     ],
     "deny": [],
     "ask": [],
