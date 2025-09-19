@@ -84,9 +84,13 @@ class DashboardController {
       // 필터 적용 로직 (예시)
       Object.keys(filters).forEach(column => {
         const filterValue = filters[column];
-        if (filterValue && filterValue !== '') {
+        // 더 엄격한 필터 값 검증
+        if (filterValue !== null && filterValue !== undefined && filterValue !== '') {
           if (Array.isArray(filterValue)) {
-            filteredData = filteredData.filter(row => filterValue.includes(row[column]));
+            // 배열인 경우 길이가 0보다 커야 함
+            if (filterValue.length > 0) {
+              filteredData = filteredData.filter(row => filterValue.includes(row[column]));
+            }
           } else {
             filteredData = filteredData.filter(row => row[column] === filterValue);
           }
@@ -119,7 +123,7 @@ class DashboardController {
         if (selected.length > 0) {
           filters[column] = selected;
         }
-      } else if (element.value) {
+      } else if (element.value && element.value !== '') {
         filters[column] = element.value;
       }
     });
@@ -650,7 +654,7 @@ class MultiChartDashboardController extends DashboardController {
   renderAllCharts() {
     this.chartConfigs.forEach((config, index) => {
       // 차트 헤더 업데이트
-      const chartHeader = document.querySelector(`.chart-item[data-chart-index="${index}"] .chart-header h6`);
+      const chartHeader = document.querySelector(`.dashboard__chart__item[data-chart-index="${index}"] .dashboard__chart__header h6`);
       if (chartHeader) {
         chartHeader.textContent = config.title || `Chart ${index + 1}`;
       }
@@ -922,11 +926,19 @@ class MultiChartDashboardController extends DashboardController {
 
           Object.keys(filters).forEach(column => {
             const filterValue = filters[column];
-            if (filterValue && filterValue !== '') {
-              if (Array.isArray(filterValue)) {
-                filteredData = filteredData.filter(row => filterValue.includes(row[column]));
-              } else {
-                filteredData = filteredData.filter(row => row[column] === filterValue);
+            // 더 엄격한 필터 값 검증
+            if (filterValue !== null && filterValue !== undefined && filterValue !== '') {
+              // 차트에 해당 컬럼이 존재하는지 확인
+              const hasColumn = filteredData.length > 0 && filteredData[0].hasOwnProperty(column);
+              if (hasColumn) {
+                if (Array.isArray(filterValue)) {
+                  // 배열인 경우 길이가 0보다 커야 함
+                  if (filterValue.length > 0) {
+                    filteredData = filteredData.filter(row => filterValue.includes(row[column]));
+                  }
+                } else {
+                  filteredData = filteredData.filter(row => row[column] === filterValue);
+                }
               }
             }
           });
@@ -1078,8 +1090,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     // Multi-chart 레이아웃 표시
-    const multiChartContainer = document.querySelector('.multi-chart-container');
-    const singleChartContainer = document.querySelector('.chart-container:not(.chart-item)');
+    const multiChartContainer = document.querySelector('.dashboard__multi-chart__container');
+    const singleChartContainer = document.querySelector('.dashboard__chart__container:not(.dashboard__chart__item)');
 
     if (isMultiChart && multiChartContainer) {
       multiChartContainer.style.display = 'block';

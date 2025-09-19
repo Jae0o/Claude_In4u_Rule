@@ -133,12 +133,12 @@ a:hover {
 }
 
 /* 카드 및 박스 그림자 개선 */
-.card, .chart-container, .chart-item {
+.card, .dashboard__chart__container, .dashboard__chart__item {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   border: 1px solid var(--color-gray-200);
 }
 
-.card:hover, .chart-container:hover, .chart-item:hover {
+.card:hover, .dashboard__chart__container:hover, .dashboard__chart__item:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
