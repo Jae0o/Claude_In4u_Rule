@@ -1,231 +1,287 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>BXG 데이터 분석 대시보드</title>
-    
+
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
     <!-- Google Fonts - Inter & Pretendard for Korean -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" rel="stylesheet">
-    
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"
+      rel="stylesheet"
+    />
+
     <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
-    
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
     <!-- Modern Dashboard Styles -->
     <!-- <link href="{{ url_for('static', path='/css/variables.css') }}" rel="stylesheet"> -->
     <!-- <link href="{{ url_for('static', path='/css/dashboard-modern.css') }}" rel="stylesheet"> -->
 
+    <link
+      href="theme.css"
+      rel="stylesheet"
+    />
+
     <!-- Base Layout CSS -->
-    <link href="base-layout.css" rel="stylesheet">
+    <link
+      href="base-layout.css"
+      rel="stylesheet"
+    />
 
     <!-- Base Dashboard CSS -->
-    <link href="base-dashboard.css" rel="stylesheet">
+    <link
+      href="base-dashboard.css"
+      rel="stylesheet"
+    />
 
     <!-- Plotly.js -->
-    <script src="https://cdn.plot.ly/plotly-3.1.0.min.js" charset="utf-8"></script>
-    
+    <script
+      src="https://cdn.plot.ly/plotly-3.1.0.min.js"
+      charset="utf-8"
+    ></script>
+
     <!-- Crossfilter.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter2/1.5.4/crossfilter.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="navbar navbar-dark">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">
-                <i class="bi bi-bar-chart"></i> BXG 분석 대시보드
-            </span>
-        </div>
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">
+          <i class="bi bi-bar-chart"></i> BXG 분석 대시보드
+        </span>
+      </div>
     </nav>
 
     <main class="container-fluid mt-3">
-        <div class="row">
-          <!-- 제목 및 설명 -->
-          <div class="col-12">
-            <h2>BXG 데이터 분석 대시보드</h2>
-            <p class="text-muted">대시보드를 통해 데이터를 분석하세요</p>
-            <hr />
+      <div class="row">
+        <!-- 제목 및 설명 -->
+        <div class="col-12">
+          <h2>BXG 데이터 분석 대시보드</h2>
+          <p class="text-muted">대시보드를 통해 데이터를 분석하세요</p>
+          <hr />
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- 필터 패널 -->
+        <div
+          class="col-md-3"
+          style="flex: 0 0 20%; max-width: 20%"
+        >
+          <div class="filter-panel">
+            <h5><i class="bi bi-funnel"></i> 필터</h5>
+
+            <!-- 달력 연도월 필터 -->
+            <div class="filter-group">
+              <label class="form-label">달력 연도월</label>
+              <select
+                class="form-select form-select-sm"
+                multiple
+                id="filter_month"
+                data-column="달력_연도_월"
+                data-type="multi_select"
+              >
+                <option value="2023.01">2023.01</option>
+                <option value="2023.02">2023.02</option>
+                <option value="2023.03">2023.03</option>
+                <option value="2023.04">2023.04</option>
+                <option value="2023.05">2023.05</option>
+                <option value="2023.06">2023.06</option>
+                <option value="2023.07">2023.07</option>
+                <option value="2023.08">2023.08</option>
+                <option value="2023.09">2023.09</option>
+              </select>
+            </div>
+
+            <!-- 유통경로 필터 -->
+            <div class="filter-group">
+              <label class="form-label">유통경로</label>
+              <select
+                class="form-select form-select-sm"
+                id="filter_channel"
+                data-column="유통경로"
+                data-type="select"
+              >
+                <option value="">전체</option>
+                <option value="온라인">온라인</option>
+                <option value="오프라인">오프라인</option>
+              </select>
+            </div>
+
+            <!-- 제품군 필터 -->
+            <div class="filter-group">
+              <label class="form-label">제품군</label>
+              <select
+                class="form-select form-select-sm"
+                multiple
+                id="filter_product"
+                data-column="제품군"
+                data-type="multi_select"
+              >
+                <option value="전자">전자</option>
+                <option value="의류">의류</option>
+                <option value="식품">식품</option>
+                <option value="스포츠">스포츠</option>
+                <option value="생활용품">생활용품</option>
+                <option value="자동차용품">자동차용품</option>
+                <option value="건강기능식품">건강기능식품</option>
+                <option value="화장품">화장품</option>
+                <option value="도서">도서</option>
+                <option value="기타">기타</option>
+              </select>
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm w-100"
+              onclick="resetFilters()"
+            >
+              <i class="bi bi-arrow-clockwise"></i> 필터 초기화
+            </button>
+          </div>
+
+          <!-- 통계 패널 -->
+          <div class="stats-panel">
+            <h6><i class="bi bi-graph-up"></i> 통계 정보</h6>
+            <div id="stats-content">
+              <div>총 데이터: <span id="total-count">0</span>행</div>
+              <div>필터링된 데이터: <span id="filtered-count">0</span>행</div>
+            </div>
           </div>
         </div>
 
-        <div class="row">
-          <!-- 필터 패널 -->
+        <!-- 차트 영역 -->
+        <div
+          class="col-md-9"
+          style="flex: 0 0 80%; max-width: 80%"
+        >
+          <!-- 다중 차트 레이아웃 -->
           <div
-            class="col-md-3"
-            style="flex: 0 0 20%; max-width: 20%"
+            class="multi-chart-container"
+            data-chart-count="1"
+            style="display: none"
           >
-            <div class="filter-panel">
-              <h5><i class="bi bi-funnel"></i> 필터</h5>
-
-              <!-- 달력 연도월 필터 -->
-              <div class="filter-group">
-                <label class="form-label">달력 연도월</label>
-                <select
-                  class="form-select form-select-sm"
-                  multiple
-                  id="filter_month"
-                  data-column="달력_연도_월"
-                  data-type="multi_select"
-                >
-                  <option value="2023.01">2023.01</option>
-                  <option value="2023.02">2023.02</option>
-                  <option value="2023.03">2023.03</option>
-                  <option value="2023.04">2023.04</option>
-                  <option value="2023.05">2023.05</option>
-                  <option value="2023.06">2023.06</option>
-                  <option value="2023.07">2023.07</option>
-                  <option value="2023.08">2023.08</option>
-                  <option value="2023.09">2023.09</option>
-                </select>
+            <div
+              class="chart-container chart-item"
+              data-chart-index="0"
+            >
+              <div class="chart-header">
+                <h6>Chart 1</h6>
               </div>
-
-              <!-- 유통경로 필터 -->
-              <div class="filter-group">
-                <label class="form-label">유통경로</label>
-                <select
-                  class="form-select form-select-sm"
-                  id="filter_channel"
-                  data-column="유통경로"
-                  data-type="select"
-                >
-                  <option value="">전체</option>
-                  <option value="온라인">온라인</option>
-                  <option value="오프라인">오프라인</option>
-                </select>
-              </div>
-
-              <!-- 제품군 필터 -->
-              <div class="filter-group">
-                <label class="form-label">제품군</label>
-                <select
-                  class="form-select form-select-sm"
-                  multiple
-                  id="filter_product"
-                  data-column="제품군"
-                  data-type="multi_select"
-                >
-                  <option value="전자">전자</option>
-                  <option value="의류">의류</option>
-                  <option value="식품">식품</option>
-                  <option value="스포츠">스포츠</option>
-                  <option value="생활용품">생활용품</option>
-                  <option value="자동차용품">자동차용품</option>
-                  <option value="건강기능식품">건강기능식품</option>
-                  <option value="화장품">화장품</option>
-                  <option value="도서">도서</option>
-                  <option value="기타">기타</option>
-                </select>
-              </div>
-
-              <button
-                type="button"
-                class="btn btn-secondary btn-sm w-100"
-                onclick="resetFilters()"
-              >
-                <i class="bi bi-arrow-clockwise"></i> 필터 초기화
-              </button>
-            </div>
-
-            <!-- 통계 패널 -->
-            <div class="stats-panel">
-              <h6><i class="bi bi-graph-up"></i> 통계 정보</h6>
-              <div id="stats-content">
-                <div>총 데이터: <span id="total-count">0</span>행</div>
-                <div>
-                  필터링된 데이터: <span id="filtered-count">0</span>행
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 차트 영역 -->
-          <div
-            class="col-md-9"
-            style="flex: 0 0 80%; max-width: 80%"
-          >
-            <!-- 다중 차트 레이아웃 -->
-            <div class="multi-chart-container" data-chart-count="1" style="display: none;">
-              <div class="chart-container chart-item" data-chart-index="0">
-                <div class="chart-header">
-                  <h6>Chart 1</h6>
-                </div>
-                <div
-                  class="loading chart-loading"
-                  id="loading-0"
-                  style="display: none"
-                >
-                  <div
-                    class="spinner-border text-primary"
-                    role="status"
-                  >
-                    <span class="visually-hidden">차트 1 로딩 중...</span>
-                  </div>
-                  <p>차트 1 로딩 중...</p>
-                </div>
-                <div id="chart-0" class="chart-plot"></div>
-              </div>
-              <div class="chart-container chart-item" data-chart-index="1">
-                <div class="chart-header">
-                  <h6>Chart 2</h6>
-                </div>
-                <div
-                  class="loading chart-loading"
-                  id="loading-1"
-                  style="display: none"
-                >
-                  <div
-                    class="spinner-border text-primary"
-                    role="status"
-                  >
-                    <span class="visually-hidden">차트 2 로딩 중...</span>
-                  </div>
-                  <p>차트 2 로딩 중...</p>
-                </div>
-                <div id="chart-1" class="chart-plot"></div>
-              </div>
-              <div class="chart-container chart-item" data-chart-index="2">
-                <div class="chart-header">
-                  <h6>Chart 3</h6>
-                </div>
-                <div
-                  class="loading chart-loading"
-                  id="loading-2"
-                  style="display: none"
-                >
-                  <div
-                    class="spinner-border text-primary"
-                    role="status"
-                  >
-                    <span class="visually-hidden">차트 3 로딩 중...</span>
-                  </div>
-                  <p>차트 3 로딩 중...</p>
-                </div>
-                <div id="chart-2" class="chart-plot"></div>
-              </div>
-            </div>
-
-            <!-- 기존 단일 차트 레이아웃 -->
-            <div class="chart-container">
               <div
-                class="loading"
-                id="loading"
+                class="loading chart-loading"
+                id="loading-0"
+                style="display: none"
               >
                 <div
                   class="spinner-border text-primary"
                   role="status"
                 >
-                  <span class="visually-hidden">로딩 중...</span>
+                  <span class="visually-hidden">차트 1 로딩 중...</span>
                 </div>
-                <p>데이터를 불러오는 중입니다...</p>
+                <p>차트 1 로딩 중...</p>
               </div>
-              <div id="chart"></div>
+              <div
+                id="chart-0"
+                class="chart-plot"
+              ></div>
+            </div>
+            <div
+              class="chart-container chart-item"
+              data-chart-index="1"
+            >
+              <div class="chart-header">
+                <h6>Chart 2</h6>
+              </div>
+              <div
+                class="loading chart-loading"
+                id="loading-1"
+                style="display: none"
+              >
+                <div
+                  class="spinner-border text-primary"
+                  role="status"
+                >
+                  <span class="visually-hidden">차트 2 로딩 중...</span>
+                </div>
+                <p>차트 2 로딩 중...</p>
+              </div>
+              <div
+                id="chart-1"
+                class="chart-plot"
+              ></div>
+            </div>
+            <div
+              class="chart-container chart-item"
+              data-chart-index="2"
+            >
+              <div class="chart-header">
+                <h6>Chart 3</h6>
+              </div>
+              <div
+                class="loading chart-loading"
+                id="loading-2"
+                style="display: none"
+              >
+                <div
+                  class="spinner-border text-primary"
+                  role="status"
+                >
+                  <span class="visually-hidden">차트 3 로딩 중...</span>
+                </div>
+                <p>차트 3 로딩 중...</p>
+              </div>
+              <div
+                id="chart-2"
+                class="chart-plot"
+              ></div>
             </div>
           </div>
+
+          <!-- 기존 단일 차트 레이아웃 -->
+          <div class="chart-container">
+            <div
+              class="loading"
+              id="loading"
+            >
+              <div
+                class="spinner-border text-primary"
+                role="status"
+              >
+                <span class="visually-hidden">로딩 중...</span>
+              </div>
+              <p>데이터를 불러오는 중입니다...</p>
+            </div>
+            <div id="chart"></div>
+          </div>
         </div>
+      </div>
     </main>
 
     <!-- Bootstrap 5 JS -->
@@ -233,5 +289,5 @@
 
     <!-- Base Dashboard JavaScript -->
     <script src="base-dashboard.js"></script>
-</body>
+  </body>
 </html>

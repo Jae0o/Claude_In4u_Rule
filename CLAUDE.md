@@ -112,3 +112,41 @@ All external dependencies are loaded via CDN:
 - UI text is in Korean
 - Fonts configured for proper Korean rendering (Pretendard)
 - Number formatting includes Korean locale settings
+
+## Code Convention Guide
+
+- .claude 폴더 내부 Convention 폴더 내부 개발 시 지켜야할 코드 컨벤션을 반드시 참고하여 반영
+- Convention 위반 코드 발견 시 즉시 지적하고 올바른 방법을 제안
+
+```
+📦.claude
+ ┃
+ ┣ 📂Convention
+    ┗ 📜ClassNameConvention.md
+    ┗ 📜StyleFontVariableConvention.md
+    ┗ 📜StyleColorVariableConvention.md
+    ┗ 📜Bootstrap5ComponentsConvention.md
+    ┗ 📜Bootstrap5InputConvention.md
+```
+
+- **(매우 중요) 작업 전 필수**: .claude/Convention 폴더의 관련 규칙을 확인하고 적용하세요.
+- **(매우 중요) 작업 전 필수 주의 사항 1**: CSS 스타일 변수 수정및 추가에 대해서는 반드시 제안 해야하고 승인했을 경우에만 변경하세요.
+- **(매우 중요) Convention 위반**: 발견 즉시 지적하고 올바른 방법을 제안하세요.
+
+- 작업 계획: 모든 UI 디자인 작업은 변경 계획 수립 → 제안 → 승인 후 작업 진행하세요.
+
+- UI 구현 우선순위: 1순위 기존 구현 컴포넌트 재사용 확인 → 2순위 Bootstrap5 사용을 검토하세요.
+
+- CSS 클래스명: ClassNameConvention.md의 Header**Block**Element_Modifier 네이밍 규칙을 모든 CSS 클래스명에 엄격히 적용하세요.
+
+- 폰트 스타일: StyleFontVariableConvention.md의 명명 규칙을 모든 CSS 폰트 변수와 폰트 이름에 적용하세요.
+- 폰트 관련: 모든 폰트 관련 스타일은 StyleFontVariableConvention.md 가이드라인을 완전히 준수해야 합니다.
+
+- 색상 스타일: StyleColorVariableConvention.md의 명명 규칙을 모든 CSS 색상 변수와 색상 이름에 적용하세요.
+- 색상 관련: 모든 색상 관련 스타일은 StyleColorVariableConvention.md 가이드라인을 완전히 준수해야 합니다.
+
+- 컨벤션 적용 우선순위: Bootstrap5 사용 시 1순위 프로젝트 컨벤션(ClassNameConvention, StyleFontVariableConvention, StyleColorVariableConvention 등등) 적용 후 → 2순위 Bootstrap5 컨벤션을 적용하세요.
+
+- Bootstrap5 사용 프로세스: 사용 계획 수립 → 제안 → 승인 후 구현 진행하세요.
+- Bootstrap5 컴포넌트: Bootstrap5ComponentsConvention.md 규칙을 모든 Bootstrap 5 컴포넌트에 엄격히 적용하세요.
+- Bootstrap5 입력요소: Bootstrap5InputConvention.md 규칙을 모든 Bootstrap 5 입력 요소에 엄격히 적용하세요.
