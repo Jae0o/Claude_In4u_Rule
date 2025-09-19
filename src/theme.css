@@ -12,7 +12,8 @@
   --font-weight-bold: 700;
 
   /* 1. Core Colors (핵심 시맨틱 색상) */
-  --color-white: #fefefe;
+  --color-white: #ffffff;
+  --color-bg-main: #EFF4F9;
   --color-black: #444444;
   --color-error: #ed1b24;
   --color-success: #01c853;
@@ -20,20 +21,20 @@
   --color-info: #1aebff;
 
   /* 2. Gray Scale System (회색 계열) */
-  --color-gray-50: #f9f9f9;
-  --color-gray-100: #f1f1f1;
-  --color-gray-200: #ebebeb;
-  --color-gray-400: #b5b5b5;
-  --color-gray-600: #9b9b9b;
-  --color-gray-800: #686668;
-  --color-gray-900: #525152;
+  --color-gray-50: #fafbfc;
+  --color-gray-100: #f4f6f8;
+  --color-gray-200: #e8eef3;
+  --color-gray-400: #a5b3c1;
+  --color-gray-600: #8894a3;
+  --color-gray-800: #606c7a;
+  --color-gray-900: #4a5568;
 
   /* 3. Primary Brand Colors (브랜드 색상) */
-  --color-primary-100: #eff4ff;
-  --color-primary-300: #dde7f9;
-  --color-primary-500: #729ce5;
-  --color-primary-700: #5d8de1;
-  --color-primary-900: #4a7bc8;
+  --color-primary-100: #e6f2ff;
+  --color-primary-300: #b3d9ff;
+  --color-primary-500: #4a90e2;
+  --color-primary-700: #357abd;
+  --color-primary-900: #2a5f99;
 
   /* 4. Theme Support Colors (테마 지원 색상) */
   /* Dark Theme */
@@ -50,16 +51,16 @@
   /* 5. Functional Colors (기능별 색상) */
   --color-accent-pink: #f2a4c6;
   --color-accent-orange: #f6bd85;
-  --color-border-default: #ebebeb;
-  --color-shadow-default: rgba(145, 145, 145, 0.196);
-  --color-overlay: rgba(255, 255, 255, 0.6);
+  --color-border-default: #d6e3f0;
+  --color-shadow-default: rgba(74, 85, 104, 0.15);
+  --color-overlay: rgba(255, 255, 255, 0.7);
 
   /* 6. Interactive States (인터랙션 상태) */
-  --color-hover-bg: #f8f9fa;
+  --color-hover-bg: #f0f4f8;
   --color-active-bg: var(--color-primary-100);
   --color-selected-bg: var(--color-primary-100);
   --color-selected-border: var(--color-primary-500);
-  --color-focus-shadow: rgba(114, 156, 229, 0.25);
+  --color-focus-shadow: rgba(74, 144, 226, 0.25);
 
   /* 7. Filter Specific (필터 전용) */
   --color-tag-bg: var(--color-primary-100);
@@ -70,10 +71,10 @@
   --color-tag-remove-hover: var(--color-error);
 
   /* 8. Enhanced Shadows (개선된 그림자) */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
-  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-sm: 0 1px 2px rgba(74, 85, 104, 0.08);
+  --shadow-md: 0 4px 6px rgba(74, 85, 104, 0.10);
+  --shadow-lg: 0 10px 15px rgba(74, 85, 104, 0.12);
+  --shadow-xl: 0 20px 25px rgba(74, 85, 104, 0.15);
+  --shadow-card: 0 2px 8px rgba(74, 85, 104, 0.10);
+  --shadow-card-hover: 0 4px 12px rgba(74, 85, 104, 0.15);
 }

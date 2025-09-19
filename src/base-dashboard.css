@@ -96,8 +96,8 @@
 }
 
 .dashboard__sidebar__filter_card .card-header {
-    background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 100%);
-    border-bottom: 2px solid var(--color-primary-100);
+    background: linear-gradient(135deg, var(--color-primary-100) 0%, var(--color-white) 100%);
+    border-bottom: 2px solid var(--color-primary-300);
     padding: 1rem;
 }
 
@@ -207,7 +207,7 @@
 .dashboard__sidebar__stats_card {
     border: none;
     box-shadow: var(--shadow-card);
-    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-primary-50) 100%);
+    background: linear-gradient(135deg, var(--color-white) 0%, var(--color-gray-50) 100%);
     transition: all 0.3s ease;
 }
 
@@ -217,7 +217,7 @@
 }
 
 .dashboard__sidebar__stats_card .card-header {
-    background: linear-gradient(135deg, var(--color-primary-100) 0%, var(--color-primary-50) 100%);
+    background: linear-gradient(135deg, var(--color-primary-100) 0%, var(--color-white) 100%);
     border-bottom: 2px solid var(--color-primary-300);
     padding: 1rem;
 }
@@ -260,12 +260,18 @@
 
 .form-select[multiple]:focus {
     border-color: var(--color-primary-500);
-    box-shadow: 0 0 0 0.25rem var(--color-primary-100);
+    box-shadow: 0 0 0 0.25rem var(--color-focus-shadow);
 }
 
 .form-select option:checked {
     background-color: var(--color-primary-500) !important;
     color: var(--color-white) !important;
+}
+
+/* Bootstrap Form Control Override */
+.form-control:focus, .form-select:focus {
+    border-color: var(--color-primary-500) !important;
+    box-shadow: 0 0 0 0.25rem var(--color-focus-shadow) !important;
 }
 
 /* Button Enhancements */
@@ -325,7 +331,8 @@
 /* Multi-chart responsive layout */
 .dashboard__content__multi_chart_container {
     display: grid;
-    gap: 20px;
+    gap: 2rem;
+    padding: 1rem 0;
 }
 
 /* 1개 차트: 전체폭 */
@@ -358,6 +365,8 @@
     .dashboard__content__multi_chart_container {
         grid-template-columns: 1fr !important;
         grid-template-rows: auto !important;
+        gap: 1.5rem;
+        padding: 0.5rem 0;
     }
 
     .dashboard__content__multi_chart_container .dashboard__content__chart_item {
@@ -370,6 +379,28 @@
     min-height: 400px;
     position: relative;
     background-color: var(--color-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
+    border: none;
+    overflow: hidden;
+}
+
+.dashboard__content__chart_item:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+}
+
+/* Chart Item Header */
+.dashboard__content__chart_item .card-header {
+    background: linear-gradient(135deg, var(--color-primary-100) 0%, var(--color-white) 100%);
+    border-bottom: 2px solid var(--color-primary-300);
+    padding: 1rem;
+}
+
+.dashboard__content__chart_item .card-body {
+    padding: 1rem;
+    min-height: 350px;
 }
 
 .dashboard__content__chart_plot {

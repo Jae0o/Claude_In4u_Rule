@@ -25,6 +25,7 @@ body {
   font-weight: var(--font-weight-normal);
   line-height: 1.5;
   color: var(--color-gray-900);
+  background-color: var(--color-bg-main);
 }
 
 /* Typography - 제목 계층 구조 */
@@ -67,7 +68,7 @@ h4, h5, h6 {
   font-family: inherit;
 }
 
-/* Button Typography */
+/* Button Typography and Primary Color Override */
 .btn {
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-medium);
@@ -81,6 +82,37 @@ h4, h5, h6 {
 
 .btn-lg {
   font-size: var(--font-size-16);
+}
+
+/* Bootstrap Primary Button Override */
+.btn-primary {
+  background-color: var(--color-primary-500) !important;
+  border-color: var(--color-primary-500) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-700) !important;
+  border-color: var(--color-primary-700) !important;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: 0 0 0 0.2rem var(--color-focus-shadow) !important;
+}
+
+.btn-primary:active, .btn-primary.active {
+  background-color: var(--color-primary-900) !important;
+  border-color: var(--color-primary-900) !important;
+}
+
+.btn-outline-primary {
+  color: var(--color-primary-500) !important;
+  border-color: var(--color-primary-500) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-primary-500) !important;
+  border-color: var(--color-primary-500) !important;
+  color: var(--color-white) !important;
 }
 
 /* Text Utilities */

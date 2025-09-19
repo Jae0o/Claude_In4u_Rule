@@ -126,6 +126,7 @@ Filters in the sidebar automatically connect to mock data:
 ```
 
 - 작업 전 필수: .claude/Convention 폴더의 관련 규칙을 확인하고 적용하세요.
+- 작업 전 필수 주의 사항 1 : CSS 스타일 변수 수정에 대해서는 반드시 제안 해야하고 승인했을 경우에만 변경하세요.
 
 - CSS 클래스명: ClassNameConvention.md의 Header**Block**Element_Modifier 네이밍 규칙을 모든 CSS 클래스명에 엄격히 적용하세요.
 
@@ -144,4 +145,5 @@ Filters in the sidebar automatically connect to mock data:
 - Convention 위반: 발견 즉시 지적하고 올바른 방법을 제안하세요.
 
 - 디자인 참조: Design_Examples 폴더와 Figma_Example 폴더 내 이미지를 UI 디자인 구현 시 필수로 교차 검증 후 참고하세요. (폴더 내 이미지가 없는 경우 서비스 내 디자인을 참조)
+- 디자인 주의 사항 : 최대한 현재 지정된 CSS 변수를 활용하여 디자인 작업을 진행하세요.
 - 작업 계획: 모든 UI 디자인 작업은 변경 계획 수립 → 제안 → 승인 후 작업 진행하세요.
