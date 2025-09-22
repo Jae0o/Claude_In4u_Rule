@@ -1,4 +1,51 @@
 /* Dashboard styles for BXG Dashboard */
+
+/* Dashboard Typography Styles */
+.dashboard__filter__panel_container h5 {
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 1rem;
+}
+
+.dashboard__filter__panel_container label {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: 0.5rem;
+}
+
+.dashboard__stats__panel_info h6 {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 0.75rem;
+}
+
+.dashboard__stats__panel_info div {
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-normal);
+    margin-bottom: 0.25rem;
+}
+
+.dashboard__chart__loading_spinner p {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-600);
+}
+
+/* Form Elements Typography */
+.dashboard__filter__panel_container select,
+.dashboard__filter__panel_container input {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-normal);
+    font-family: var(--font-family-primary);
+}
+
+.dashboard__filter__panel_container button {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-medium);
+    font-family: var(--font-family-primary);
+}
+
+/* Dashboard Components */
 .dashboard__filter__panel_container {
     background-color: #f8f9fa;
     border-radius: 8px;
@@ -100,5 +147,5 @@
 .dashboard__chart__header_title h6 {
     margin: 0;
     color: #333;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
 }
