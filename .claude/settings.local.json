@@ -15,7 +15,75 @@
       "Bash(del \"D:\\Repo\\Claude_In4u_Rule\\src\\dashboard.html\")"
     ],
     "deny": [],
-    "ask": [],
-    "customInstructions": ""
-  }
+    "ask": []
+  },
+
+  "rules": [
+    {
+      "tag": "required-rules-convention",
+      "content": "Strictly follow the rules in .claude/conventions/RequiredRules.md file."
+    },
+
+    {
+      "tag": "css-theme-convention",
+      "content": "Strictly follow the rules in .claude/conventions/CSSTheme.md file."
+    },
+    {
+      "tag": "className-convention",
+      "content": "Strictly follow the rules in .claude/conventions/CSSClassNaming.md file."
+    },
+    {
+      "tag": "css-font-variable-convention",
+      "content": "Strictly follow the rules in .claude/conventions/CSSFontVariable.md file."
+    },
+    {
+      "tag": "css-color-variable-convention",
+      "content": "Strictly follow the rules in .claude/conventions/CSSColorVariable.md file."
+    },
+    {
+      "tag": "bootstrap5-inputs-convention",
+      "content": "Strictly follow the rules in .claude/conventions/Bootstrap5Inputs.md file."
+    },
+    {
+      "tag": "bootstrap5-components-convention",
+      "content": "Strictly follow the rules in .claude/conventions/Bootstrap5Components.md file."
+    }
+  ],
+  "instructions": [
+    "### Modification Scope Restriction Principles 1. **Precise Targeting**: Modify only the specific component/file/line requested 2. **Style Isolation**: When changing CSS/styled-components, affect only the targeted class/component 3. **Dependency Preservation**: Prohibit unauthorized changes to import statements, props, state management logic 4. **Existing Logic Maintenance**: Prohibit changes to business logic or data flow",
+
+    "### Pre-modification Checklist 1. Accurately identify the requested file path 2. Explicitly mark modification scope with comments 3. Review impact of changes on other components 4. Comply with existing style system (theme, variables)",
+
+    "### Conventions Essential Important Guidelines 1. **conventions File Reference**: Must refer to and apply development conventions inside `.claude/conventions/` folder 2. **Real-time Convention Verification**: Immediately point out convention violations and suggest correct methods",
+
+    "Required Rules Related Rules (RequiredRules.md) 1. Required Rules Top Priority: All rules in 📜RequiredRules.md take precedence over all other guidelines 2. Required Rules Mandatory Review: Must review 📜RequiredRules.md before starting any work 3. Required Rules Compliance Verification: Perform additional verification of Required Rules compliance after work completion 4. Required Rules Violation Prohibited: Immediately stop work and take corrective action if rules are violated 5. Required Rules Modification Prohibited: Absolutely prohibited to directly modify RequiredRules.md file, only suggestions for changes allowed",
+
+    "(Very Important) Pre-work Requirement 1: Check related rules in .claude/conventions folder and apply them to every task execution.",
+    "(Very Important) Pre-work Requirement 2: For CSS Style Variable Edit & Add, you must propose a plan before work and only make changes after approval.",
+    "(Very Important) Pre-work Requirement 3: Inspect convention violations for every request and immediately point out violations and suggest correct methods.",
+
+    "Work Planning: All UI design work should follow the process: establish change plan → propose → proceed after approval.",
+
+    "UI Implementation Priority: 1st priority - check existing component reuse → 2nd priority - review Bootstrap5 usage.",
+
+    "CSS Theme Absolutely Prohibited: Absolutely prohibited to add/modify/delete variables in theme.css file",
+    "Theme Convention Reference: For detailed theme-related matters, must refer to the 📜CSSTheme.md guide",
+
+    "CSS Class Names: Strictly apply the **Header**Block**Element_Modifier** naming rules from 📜CSSClassNaming.md to all CSS class names.",
+
+    "Font Styles: Apply naming rules from 📜CSSFontVariable.md to all CSS font variables and font names.",
+    "Font Related: All font-related styles must fully comply with 📜CSSFontVariable.md guidelines.",
+
+    "Color Styles: Apply naming rules from 📜CSSColorVariable.md to all CSS color variables and color names.",
+    "Color Related: All color-related styles must fully comply with 📜CSSColorVariable.md guidelines.",
+
+    "Convention Application Priority: When using Bootstrap5, 1st priority - apply project conventions (📜CSSClassNaming, 📜CSSFontVariable, 📜CSSColorVariable, etc.) → 2nd priority - apply Bootstrap5 conventions.",
+
+    "Bootstrap5 Usage Process: Establish usage plan → propose → proceed with implementation after approval.",
+    "Bootstrap5 Components: Strictly apply 📜Bootstrap5Components.md rules to all Bootstrap 5 components.",
+    "Bootstrap5 Input Elements: Strictly apply 📜Bootstrap5Inputs.md rules to all Bootstrap 5 input elements.",
+
+    "### Standard Sequence for CSS Structure Changes 1. **Impact Scope Analysis** (Search all usage with Grep) ```bash grep -r \"className\" . --include=\"*.js\" --include=\"*.jsx\" --include=\"*.ts\" --include=\"*.tsx\" ``` 2.Establish Change Plan and Get User Approval 3. Sequential File Changes (CSS → HTML → JS → Others) 4. Step-by-step Verification (Immediate check after each file change) 5. Final Overall Verification (Confirm complete removal of old class names) 6. Error Prevention Checkpoints 3. Sequential File Changes (CSS → HTML → JS → Others) 4. Step-by-step Verification (Immediate check after each file change) 5. Final Overall Verification (Confirm complete removal of old class names) 6.Error Prevention Checkpoints",
+    "### Essential Question List 1. \"Is this class name being used in JavaScript?\" 2. \"Are there references in files other than HTML templates?\" 3. \"Are there any dynamically generated class names?\" 4. \"Are there references in CSS-in-JS or inline styles?\""
+  ]
 }
